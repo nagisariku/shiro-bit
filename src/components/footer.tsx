@@ -10,7 +10,7 @@ export function Footer() {
             Thank you for your trust using our store. Don't forget to follow for more offers:
           </p>
           <a
-            href="https://instagram.com/rikustore.my.id"
+            href="https://instagram.com/shirobit.my.id"
             target="_blank"
             rel="noopener noreferrer"
             className=" transition-colors"

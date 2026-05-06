@@ -8,7 +8,7 @@ import { ContactForm } from './_components/contact-form'
 export const metadata: Metadata = {
   title: 'Contact Us | Start Your Project',
   description:
-    'Ready to elevate your digital presence? Contact Riku Store today to discuss your website development project or template customization.',
+    'Ready to elevate your digital presence? Contact ShiroBIT today to discuss your website development project or template customization.',
 }
 
 export default function ContactPage() {

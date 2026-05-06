@@ -24,15 +24,15 @@ const inter = Inter({
   subsets: ['latin'],
 })
 
-const baseUrl = 'https://rikustore.vercel.app'
+const baseUrl = 'https://shirobit.vercel.app'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Riku Store | Premium Website Development & Templates',
-    template: '%s | Riku Store',
+    default: 'ShiroBIT | Premium Website Development & Templates',
+    template: '%s | ShiroBIT',
   },
   description:
-    'Riku Store provides high-performance website development and curated premium templates. Elevate your digital presence with our pixel-perfect, SEO-optimized solutions.',
+    'ShiroBIT provides high-performance website development and curated premium templates. Elevate your digital presence with our pixel-perfect, SEO-optimized solutions.',
   keywords: [
     'Website Development',
     'Web Design Agency',
@@ -44,18 +44,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   robots: 'index, follow',
   openGraph: {
-    title: 'Riku Store | Premium Website Development',
+    title: 'ShiroBIT | Premium Website Development',
     description:
       'Elevate your digital presence with premium website development and curated templates.',
     url: baseUrl,
-    siteName: 'Riku Store',
+    siteName: 'ShiroBIT',
     type: 'website',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Riku Store - Premium Website Development',
+        alt: 'ShiroBIT - Premium Website Development',
       },
     ],
   },

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { WebTemplates } from '@/lib/constants/templates'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://rikustore.vercel.app'
+  const baseUrl = 'https://shirobit.vercel.app'
 
   // Dynamic portfolio items
   const portfolioEntries: MetadataRoute.Sitemap = WebTemplates.map((template) => ({

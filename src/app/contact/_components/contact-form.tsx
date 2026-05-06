@@ -102,22 +102,12 @@ export function ContactForm() {
 
   async function onSubmit(data: ContactFormValues) {
     try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to send inquiry')
-      }
-
+      console.log('Form data:', data)
+      // Mocking a successful submission since API key dependencies are removed
       setShowSuccessDialog(true)
       form.reset()
     } catch (error) {
-      showToast.error('Failed to send inquiry. Please try again.')
+      showToast.error('Something went wrong. Please try again.')
     }
   }
 

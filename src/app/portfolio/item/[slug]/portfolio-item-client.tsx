@@ -178,7 +178,7 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
                       asChild
                     >
                       <Link
-                        href={`https://wa.me/6281234567890?text=Halo Riku Store, saya tertarik dengan template ${webData.title}`}
+                        href={`https://wa.me/6281234567890?text=Halo ShiroBIT, saya tertarik dengan template ${webData.title}`}
                         target="_blank"
                       >
                         <ShoppingCart className="mr-2 size-5" />

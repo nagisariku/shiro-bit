@@ -7,7 +7,7 @@ export default function ReviewsAltSection() {
   const testimonials = [
     {
       quote:
-        'Riku Store delivered a website that perfectly captures the essence of our restaurant. The booking integration is seamless and our customers love the aesthetic.',
+        'ShiroBIT delivered a website that perfectly captures the essence of our restaurant. The booking integration is seamless and our customers love the aesthetic.',
       name: 'Gusto Restaurant',
       designation: 'Culinary - Fine Dining',
       src: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=3540&auto=format&fit=crop',
@@ -23,7 +23,7 @@ export default function ReviewsAltSection() {
     },
     {
       quote:
-        'Strategic, fast, and high-quality. Riku Store is our go-to for all our web development needs. They understand the tech industry perfectly.',
+        'Strategic, fast, and high-quality. ShiroBIT is our go-to for all our web development needs. They understand the tech industry perfectly.',
       name: 'ShiroBIT',
       designation: 'Tech - Digital Consulting',
       src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',

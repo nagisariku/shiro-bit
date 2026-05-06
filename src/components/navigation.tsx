@@ -1,102 +1,27 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
+import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { supabase } from './../lib/supabaseClient'
-import { Login } from './login'
-import { Button } from '@/components/ui/button'
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from '@/components/ui/navigation-menu'
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { ModeToggle } from '@/components/darkmode-toggle'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { HiShoppingCart } from 'react-icons/hi2'
+import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 
 export function Navigation() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // Track login state
-  const [isLogoutOpen, setIsLogoutOpen] = useState(false) // Logout dialog state
-  const router = useRouter()
-
-  const isProd = false
-
-  // Check session on mount and update login state
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data, error } = await supabase.auth.getSession()
-      if (error) {
-        setIsLoggedIn(false)
-        return
-      }
-      setIsLoggedIn(!!data.session) // Set true if session exists
-    }
-
-    checkSession()
-
-    // Listen for auth state changes (e.g., login/logout)
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log('Auth event:', event, session)
-        setIsLoggedIn(!!session)
-        if (event === 'SIGNED_OUT') {
-          router.push('/') // Redirect to home after logout
-        }
-      },
-    )
-
-    // Cleanup listener on unmount
-    return () => {
-      authListener.subscription.unsubscribe()
-    }
-  }, [router])
-
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut()
-      if (error) throw error
-      setIsLogoutOpen(false) // Close dialog
-      setIsLoggedIn(false) // Update state
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.error('Logout error:', err.message)
-      } else {
-        console.error('Logout error:', String(err))
-      }
-    }
-  }
   return (
     <>
       <div className="flex w-full items-start justify-center gap-1.5 bg-yellow-200 px-4 py-2 text-start font-inter text-sm text-black md:h-10 md:text-center md:text-base">
@@ -165,41 +90,6 @@ export function Navigation() {
           </NavigationMenu>
 
           <div className="flex items-center gap-2 md:gap-3">
-            {isLoggedIn ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
-                  >
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src="https://api.dicebear.com/9.x/fun-emoji/svg?seed=Jade" />
-                      <AvatarFallback>R</AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="w-32 bg-custom-light dark:border-none dark:bg-custom-dark"
-                  align="end"
-                  forceMount
-                >
-                  <DropdownMenuItem>
-                    <Link className="w-full" href="/dashboard">
-                      Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="text-red-600"
-                    onClick={() => setIsLogoutOpen(true)}
-                  >
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              // <Login />
-              <></>
-            )}
             <ModeToggle />
             {/* Mobile Navigation - Hidden on desktop */}
             <Sheet>
@@ -259,26 +149,6 @@ export function Navigation() {
               </SheetContent>
             </Sheet>
           </div>
-
-          <Dialog open={isLogoutOpen} onOpenChange={setIsLogoutOpen}>
-            <DialogContent className="max-w-[24rem] rounded-lg border-none bg-custom-cream dark:bg-custom-dark">
-              <DialogHeader>
-                <DialogTitle className="text-2xl">Logout?</DialogTitle>
-                <div className="">
-                  <p className="mb-4 text-sm">
-                    Are you sure you want to logout? You’ll need to sign in
-                    again to access your account.
-                  </p>
-                  <Button
-                    className="float-none mx-auto w-[8rem] bg-red-400 text-white dark:bg-red-400 sm:float-end"
-                    onClick={handleLogout}
-                  >
-                    Confirm
-                  </Button>
-                </div>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
         </div>
       </div>
     </>

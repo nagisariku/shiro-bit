@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/dashboard/', // Disallow crawling of dashboard pages
     },
-    sitemap: 'https://rikustore.vercel.app/sitemap.xml',
+    sitemap: 'https://shirobit.vercel.app/sitemap.xml',
   }
 }
