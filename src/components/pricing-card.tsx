@@ -46,6 +46,7 @@ export function PricingCard({ plan, index }: PricingCardProps) {
                   src={plan.icon}
                   alt="plan icon"
                   fill
+                  sizes="48px"
                   className="object-contain"
                 />
               </div>

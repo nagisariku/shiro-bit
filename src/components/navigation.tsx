@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -23,14 +24,22 @@ import { Menu, Instagram, Mail, Send, MapPin } from 'lucide-react'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const pathname = usePathname()
+
+  const isActive = (path: string) => {
+    if (path === '/home' && pathname === '/') return true
+    return pathname === path
+  }
+
   return (
     <>
-      <div className="flex w-full items-start justify-center gap-1.5 bg-yellow-200 px-4 py-2 text-start font-inter text-sm text-black md:h-10 md:text-center md:text-base">
-        🚀
-        <p>
-          Get a <strong>special discount</strong> by bringing your website
-          project to us during our early launch!
-        </p>
+      <div className="flex items-center justify-center md:px-4 md:py-4">
+        <div className="flex w-full max-w-screen-xl items-start justify-center bg-yellow-200 px-3 py-2 text-start text-sm text-black md:items-center md:rounded-2xl md:text-center md:text-base">
+          <p>
+            🚀 Get a <strong>80% off</strong> by bringing your website project
+            to us during our early launch! <strong>(first 5 customers)</strong>
+          </p>
+        </div>
       </div>
       <div className="sticky top-0 z-50 w-full border-b border-neutral-100/30 bg-background/60 backdrop-blur-md dark:border-none">
         <div className="container mx-auto flex max-w-screen-xl items-center justify-between px-2 py-4 md:px-4">
@@ -52,41 +61,27 @@ export function Navigation() {
           {/* Desktop Navigation - Hidden on mobile */}
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList className="space-x-8">
-              <NavigationMenuItem>
-                <Link href="/home" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Home
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/portfolio" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Portfolio
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/pricing" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Pricing
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/process" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Process
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Contact
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+              {[
+                { href: '/home', label: 'Home' },
+                { href: '/portfolio', label: 'Portfolio' },
+                { href: '/pricing', label: 'Pricing' },
+                { href: '/process', label: 'Process' },
+                { href: '/contact', label: 'Contact' },
+              ].map((item) => (
+                <NavigationMenuItem key={item.href}>
+                  <Link href={item.href} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={`${navigationMenuTriggerStyle()} transition-all duration-300 ${
+                        isActive(item.href)
+                          ? 'scale-110 text-[var(--color-brand-primary)] font-bold'
+                          : ''
+                      }`}
+                    >
+                      {item.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
 
@@ -111,42 +106,27 @@ export function Navigation() {
                   <SheetTitle className="text-start text-2xl">Menu</SheetTitle>
                   <SheetDescription></SheetDescription>
                 </SheetHeader>
-                <nav className="mt-8 flex flex-col gap-4">
-                  <Link
-                    href="/home"
-                    onClick={() => setIsOpen(false)}
-                    className="paragraph-hero"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/portfolio"
-                    onClick={() => setIsOpen(false)}
-                    className="paragraph-hero"
-                  >
-                    Portfolio
-                  </Link>
-                  <Link
-                    href="/pricing"
-                    onClick={() => setIsOpen(false)}
-                    className="paragraph-hero"
-                  >
-                    Pricing
-                  </Link>
-                  <Link
-                    href="/process"
-                    onClick={() => setIsOpen(false)}
-                    className="paragraph-hero"
-                  >
-                    Process
-                  </Link>
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="paragraph-hero"
-                  >
-                    Contact
-                  </Link>
+                <nav className="mt-8 flex flex-col gap-6">
+                  {[
+                    { href: '/home', label: 'Home' },
+                    { href: '/portfolio', label: 'Portfolio' },
+                    { href: '/pricing', label: 'Pricing' },
+                    { href: '/process', label: 'Process' },
+                    { href: '/contact', label: 'Contact' },
+                  ].map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`paragraph-hero block w-fit origin-left transition-all duration-300 ${
+                        isActive(item.href)
+                          ? 'scale-110 text-[var(--color-brand-primary)] font-bold'
+                          : 'opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
                 </nav>
 
                 <div className="mt-auto space-y-6 pb-4">
