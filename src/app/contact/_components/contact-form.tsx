@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   DollarSign,
   Link as LinkIcon,
@@ -55,6 +55,8 @@ import { SuccessDialog } from './success-dialog'
 import { SectionTitle } from './section-title'
 import { sendContactEmail } from '../actions'
 
+const STORAGE_KEY = 'contact-form-draft'
+
 export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false)
   const form = useForm<ContactFormValues>({
@@ -76,6 +78,34 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
       estimatedBudget: '800',
     },
   })
+
+  // Load saved data from localStorage on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem(STORAGE_KEY)
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData)
+        form.reset({
+          ...form.getValues(),
+          ...parsedData,
+        })
+      } catch (error) {
+        console.error('Failed to load saved form data:', error)
+      }
+    }
+  }, [form])
+
+  // Save form data to localStorage on change
+  useEffect(() => {
+    const subscription = form.watch((value) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(value))
+      } catch (error) {
+        console.error('Failed to save form data to localStorage:', error)
+      }
+    })
+    return () => subscription.unsubscribe()
+  }, [form])
 
   const currentPlan = form.watch('plan')
   const maintenanceType = form.watch('maintenanceType')
@@ -118,6 +148,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
       const result = await sendContactEmail(data)
 
       if (result.success) {
+        localStorage.removeItem(STORAGE_KEY)
         setShowSuccessDialog(true)
         form.reset()
       } else {
