@@ -100,7 +100,7 @@ const TemplateSection = ({
                     <div className="absolute inset-0 flex items-center justify-center bg-black/10">
                       <Button
                         variant="secondary"
-                        className="pointer-events-none shadow-lg"
+                        className="pointer-events-none border text-white"
                       >
                         Show More
                       </Button>

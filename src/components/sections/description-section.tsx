@@ -11,21 +11,23 @@ export default function DescriptionSection() {
         <div className="order-2 grid w-full grid-cols-2 md:aspect-[4/3] lg:order-2">
           {/* Left column: Align Your Business Needs + Full Support */}
           <div className="row-span-2 flex flex-col border-r bg-surface-base dark:border-border-subtle dark:bg-surface-elevated md:bg-surface-base md:dark:border-border-subtle md:dark:bg-surface-muted">
-            <div className="flex flex-1 flex-col items-end justify-end p-4 md:p-6">
+            <div className="flex flex-1 flex-col p-4 md:p-6">
               <div className="mb-3 flex justify-end">
                 <Target className="icon-style" />
               </div>
-              <h2 className="paragraph-hero">Align Your Business Needs</h2>
+              <h2 className="paragraph-hero text-end">
+                Align Your Business Needs
+              </h2>
               <p className="paragraph-default text-end">
                 We understanding your goals, audience, and vision to craft a
                 digital presence that truly elevates your company.
               </p>
             </div>
-            <div className="flex flex-1 flex-col items-end justify-end border-t p-4 dark:border-border-subtle md:p-6 md:pt-6">
+            <div className="flex flex-1 flex-col border-t p-4 dark:border-border-subtle md:p-6 md:pt-6">
               <div className="mb-3 flex justify-end">
                 <HeartHandshake className="icon-style" />
               </div>
-              <h2 className="paragraph-hero">Full Support</h2>
+              <h2 className="paragraph-hero text-end">Full Support</h2>
               <p className="paragraph-default text-end">
                 From the conceptualization to post-launch care. We're not just a
                 vendor, we're your long-term partner.

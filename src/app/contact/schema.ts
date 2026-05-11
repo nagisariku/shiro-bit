@@ -12,7 +12,7 @@ export const FormSchema = z
     maintenanceType: z.enum(['monthly', 'yearly'], {
       required_error: 'Please select a maintenance schedule.',
     }),
-    paymentMethod: z.enum(['paypal', 'wise', 'stripe'], {
+    paymentMethod: z.enum(['paypal', 'wise'], {
       required_error: 'Please select a payment method.',
     }),
     paymentSchedule: z.enum(['50-deposit', 'full-payment'], {

@@ -185,7 +185,7 @@
   }
 
   .section-subtitle {
-    @apply mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300 md:mb-12;
+    @apply mx-auto mb-8 max-w-3xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300 md:mb-12 md:text-lg;
   }
 
   .section-subtitle-portfolio {
@@ -229,7 +229,7 @@
   }
 
   .paragraph-default {
-    @apply max-w-none whitespace-pre-wrap text-base leading-relaxed text-neutral-600 dark:text-neutral-300;
+    @apply max-w-none whitespace-pre-wrap text-sm leading-relaxed text-neutral-600 dark:text-neutral-300 md:text-base;
   }
 
   .paragraph-hero {

@@ -244,5 +244,4 @@ export const plans = [
 export const paymentMethods = [
   { id: 'paypal', title: 'PayPal', icon: '/assets/icons/paypal.svg' },
   { id: 'wise', title: 'Wise', icon: '/assets/icons/wise.svg' },
-  { id: 'stripe', title: 'Stripe', icon: '/assets/icons/stripe.svg' },
 ]

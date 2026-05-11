@@ -90,27 +90,28 @@ export default function StudyCasesSection() {
           cases, from corporate businesses to modern startups and local brands.
         </p>
       </BlurFade>
-      <div className="relative mx-auto w-full">
-        <Carousel
-          opts={{
-            align: (viewSize) => viewSize * 0.08,
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-4 sm:-ml-6 md:-ml-8">
-            {studyCases.map((studyCase, idx) => (
-              <CarouselItem
-                key={idx}
-                className="basis-[85%] pl-4 sm:basis-[40%] lg:basis-[30%]"
-              >
-                <BlurFade delay={0.25 + idx * 0.05} inView className="h-full">
+      <BlurFade delay={0.5} inView>
+        <div className="relative mx-auto w-full">
+          <Carousel
+            opts={{
+              align: (viewSize) => viewSize * 0.08,
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4 sm:-ml-6 md:-ml-8">
+              {studyCases.map((studyCase, idx) => (
+                <CarouselItem
+                  key={idx}
+                  className="basis-[85%] pl-4 sm:basis-[40%] lg:basis-[30%]"
+                >
                   <Card className="relative mx-auto flex aspect-[4/5] w-full flex-col justify-end overflow-hidden rounded-2xl border-none shadow-none">
                     <Image
                       src={studyCase.image}
                       alt={studyCase.title}
                       fill
                       className="pointer-events-none select-none object-cover"
+                      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 40vw, 30vw"
                       placeholder="blur"
                       blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                       draggable={false}
@@ -126,16 +127,16 @@ export default function StudyCasesSection() {
                       </p>
                     </div>
                   </Card>
-                </BlurFade>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          {/* <div className="absolute -bottom-16 left-1/2 flex -translate-x-1/2 gap-4 lg:static lg:contents">
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {/* <div className="absolute -bottom-16 left-1/2 flex -translate-x-1/2 gap-4 lg:static lg:contents">
             <CarouselPrevious className="static h-12 w-12 translate-y-0 border-white/20 bg-black/50 text-white hover:bg-black/70 lg:absolute lg:-left-4 lg:top-1/2 lg:-translate-y-1/2" />
             <CarouselNext className="static h-12 w-12 translate-y-0 border-white/20 bg-black/50 text-white hover:bg-black/70 lg:absolute lg:-right-4 lg:top-1/2 lg:-translate-y-1/2" />
           </div> */}
-        </Carousel>
-      </div>
+          </Carousel>
+        </div>
+      </BlurFade>
     </div>
   )
 }

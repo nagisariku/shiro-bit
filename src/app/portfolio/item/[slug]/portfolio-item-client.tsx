@@ -78,6 +78,7 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
               fill
               priority
               className="object-cover object-top"
+              sizes="(max-width: 1280px) 100vw, 1280px"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
             />
@@ -113,6 +114,7 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
                           alt={`${webData.title} screenshot ${idx + 1}`}
                           fill
                           className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
                           placeholder="blur"
                           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                         />

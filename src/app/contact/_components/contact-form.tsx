@@ -11,6 +11,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { Label } from '@/components/ui/label'
 
 import { BlurFade } from '@/components/magicui/blur-fade'
 import { Button } from '@/components/ui/button'
@@ -211,6 +212,8 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <FormLabel>Full Name</FormLabel>
                       <FormControl>
                         <Input
+                          id="name"
+                          autoComplete="name"
                           placeholder="John Doe"
                           className={cn(
                             'h-12 rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900',
@@ -232,6 +235,8 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <FormLabel>Email Address</FormLabel>
                       <FormControl>
                         <Input
+                          id="email"
+                          autoComplete="email"
                           placeholder="john@example.com"
                           className={cn(
                             'h-12 rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900',
@@ -246,7 +251,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                   )}
                 />
                 <div className="md:col-span-2">
-                  <FormLabel>Phone Number</FormLabel>
+                  <Label htmlFor="phone">Phone Number</Label>
                   <div className="mt-2 flex flex-row gap-3">
                     <FormField
                       control={form.control}
@@ -374,7 +379,9 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                         <FormItem className="flex-1">
                           <FormControl>
                             <Input
-                              placeholder="812-3456-7890"
+                              id="phone"
+                              autoComplete="tel"
+                              placeholder="123-456-7890"
                               className={cn(
                                 'h-12 rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900',
                                 fieldState.error &&
@@ -416,10 +423,12 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value={plan.id}
+                                id={plan.id}
                                 className="sr-only"
                               />
                             </FormControl>
                             <FormLabel
+                              htmlFor={plan.id}
                               className={cn(
                                 'flex h-full cursor-pointer flex-col items-center justify-center gap-4 rounded-xl border-2 p-6 text-center transition-all hover:bg-neutral-50 dark:hover:bg-neutral-800/50',
                                 field.value === plan.id
@@ -493,14 +502,18 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                           <div className="relative">
                             <DollarSign className="absolute left-3 top-3.5 h-5 w-5 text-neutral-400" />
                             <Input
+                              id="estimatedBudget"
                               type="number"
-                              placeholder="799.99"
+                              placeholder="0"
                               className={cn(
                                 'h-12 rounded-xl border-neutral-200 bg-white pl-10 dark:border-neutral-800 dark:bg-neutral-900',
                                 fieldState.error &&
                                   'border-red-500 focus-visible:ring-red-500',
                               )}
                               {...field}
+                              onChange={(e) =>
+                                field.onChange(Number(e.target.value))
+                              }
                             />
                           </div>
                         </FormControl>
@@ -532,10 +545,11 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value="monthly"
+                                id="monthly"
                                 className="border-neutral-300 text-emerald-600 focus-visible:ring-emerald-500 dark:border-neutral-700"
                               />
                             </FormControl>
-                            <FormLabel className="cursor-pointer font-normal">
+                            <FormLabel htmlFor="monthly" className="cursor-pointer font-normal">
                               Monthly
                             </FormLabel>
                           </FormItem>
@@ -543,10 +557,11 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value="yearly"
+                                id="yearly"
                                 className="border-neutral-300 text-emerald-600 focus-visible:ring-emerald-500 dark:border-neutral-700"
                               />
                             </FormControl>
-                            <FormLabel className="cursor-pointer font-normal">
+                            <FormLabel htmlFor="yearly" className="cursor-pointer font-normal">
                               Yearly (2 Months Free)
                             </FormLabel>
                           </FormItem>
@@ -621,7 +636,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <RadioGroup
                         onValueChange={field.onChange}
                         value={field.value}
-                        className="grid grid-cols-1 gap-4 md:grid-cols-3"
+                        className="grid grid-cols-1 gap-4 md:grid-cols-2"
                       >
                         {paymentMethods.map((method) => (
                           <FormItem key={method.id}>
@@ -679,10 +694,11 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value="50-deposit"
+                                id="50-deposit"
                                 className="border-neutral-300 text-emerald-600 focus-visible:ring-emerald-500 dark:border-neutral-700"
                               />
                             </FormControl>
-                            <FormLabel className="cursor-pointer font-normal">
+                            <FormLabel htmlFor="50-deposit" className="cursor-pointer font-normal">
                               50% Deposit
                             </FormLabel>
                           </FormItem>
@@ -690,10 +706,11 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value="full-payment"
+                                id="full-payment"
                                 className="border-neutral-300 text-emerald-600 focus-visible:ring-emerald-500 dark:border-neutral-700"
                               />
                             </FormControl>
-                            <FormLabel className="cursor-pointer font-normal">
+                            <FormLabel htmlFor="full-payment" className="cursor-pointer font-normal">
                               Full Payment
                             </FormLabel>
                           </FormItem>
@@ -723,6 +740,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <FormLabel>Project / Website Name</FormLabel>
                       <FormControl>
                         <Input
+                          id="projectName"
                           placeholder="My Awesome Project"
                           className={cn(
                             'h-12 rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900',
@@ -752,6 +770,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                         >
                           <FormControl>
                             <SelectTrigger
+                              id="websiteType"
                               className={cn(
                                 'h-12 rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900',
                                 fieldState.error && 'border-red-500',
@@ -788,6 +807,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                         >
                           <FormControl>
                             <SelectTrigger
+                              id="businessCategory"
                               className={cn(
                                 'h-12 rounded-xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900',
                                 fieldState.error && 'border-red-500',
@@ -832,10 +852,11 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value="no-design"
+                                id="no-design"
                                 className="border-neutral-300 text-emerald-600 focus-visible:ring-emerald-500 dark:border-neutral-700"
                               />
                             </FormControl>
-                            <FormLabel className="cursor-pointer font-normal">
+                            <FormLabel htmlFor="no-design" className="cursor-pointer font-normal">
                               I don&apos;t have any design
                             </FormLabel>
                           </FormItem>
@@ -843,10 +864,11 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                             <FormControl>
                               <RadioGroupItem
                                 value="custom-design"
+                                id="custom-design"
                                 className="border-neutral-300 text-emerald-600 focus-visible:ring-emerald-500 dark:border-neutral-700"
                               />
                             </FormControl>
-                            <FormLabel className="cursor-pointer font-normal">
+                            <FormLabel htmlFor="custom-design" className="cursor-pointer font-normal">
                               I got bring my own design (custom)
                             </FormLabel>
                           </FormItem>
@@ -869,6 +891,8 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                         <div className="relative">
                           <LinkIcon className="absolute left-3 top-3.5 h-5 w-5 text-neutral-400" />
                           <Input
+                            id="googleDriveLink"
+                            autoComplete="url"
                             placeholder="https://drive.google.com/..."
                             className={cn(
                               'h-12 rounded-xl border-neutral-200 bg-white pl-10 dark:border-neutral-800 dark:bg-neutral-900',
@@ -895,6 +919,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <FormLabel>Project Notes & Details</FormLabel>
                       <FormControl>
                         <Textarea
+                          id="notes"
                           placeholder="Tell us more about your goals, features, and target audience..."
                           className={cn(
                             'min-h-[160px] resize-none rounded-xl border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900',

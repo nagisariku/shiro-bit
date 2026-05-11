@@ -23,13 +23,13 @@ export default function FreeConsulting() {
           <BlurFade delay={0.2} inView className="h-full">
             <a
               href="mailto:mumuhshidiq@gmail.com"
-              className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-surface-base p-8 py-16 transition-all hover:bg-neutral-50 dark:bg-surface-elevated dark:hover:bg-neutral-900 sm:py-24"
+              className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-surface-base p-8 transition-all hover:bg-neutral-50 dark:bg-surface-elevated dark:hover:bg-neutral-900 md:py-24"
             >
-              <div className="mb-6 rounded-3xl bg-green-100 p-6 text-green-600 transition-transform group-hover:scale-110 dark:bg-green-900/30 dark:text-green-400 md:p-8">
+              <div className="mb-4 rounded-3xl bg-green-100 p-6 text-green-600 transition-transform group-hover:scale-110 dark:bg-green-900/30 dark:text-green-400 md:mb-6 md:p-8">
                 <Mail className="size-10 md:size-14" />
               </div>
-              <h3 className="paragraph-hero text-center">Email Inquiry</h3>
-              <p className="paragraph-default mt-2 text-center">
+              <h3 className="paragraph-title">Email Inquiry</h3>
+              <p className="paragraph-default mt-2 hidden text-center md:block">
                 Drop us a line and let's start a conversation.
               </p>
             </a>
@@ -41,15 +41,13 @@ export default function FreeConsulting() {
             href="https://instagram.com/shirobit"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-surface-base p-8 py-10 transition-all hover:bg-neutral-50 dark:bg-surface-elevated dark:hover:bg-neutral-900 sm:py-14"
+            className="group relative flex aspect-square h-full flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-surface-base p-8 transition-all hover:bg-neutral-50 dark:bg-surface-elevated dark:hover:bg-neutral-900 md:aspect-auto md:py-14"
           >
-            <div className="mb-4 rounded-2xl bg-pink-100 p-4 text-pink-600 transition-transform group-hover:scale-110 dark:bg-pink-900/30 dark:text-pink-400">
+            <div className="mb-2 rounded-2xl bg-pink-100 p-4 text-pink-600 transition-transform group-hover:scale-110 dark:bg-pink-900/30 dark:text-pink-400 md:mb-4">
               <Instagram className="size-8" />
             </div>
-            <h3 className="paragraph-hero text-center text-lg sm:text-xl">
-              Direct Message
-            </h3>
-            <p className="paragraph-default mt-1 text-center text-sm">
+            <h3 className="paragraph-title">Direct Message</h3>
+            <p className="paragraph-default mt-1 hidden text-center text-sm md:block">
               Reach out via Instagram
             </p>
           </a>
@@ -60,15 +58,13 @@ export default function FreeConsulting() {
             href="https://t.me/username"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-surface-base p-8 py-10 transition-all hover:bg-neutral-50 dark:bg-surface-elevated dark:hover:bg-neutral-900 sm:py-14"
+            className="group relative flex aspect-square h-full flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-surface-base p-8 transition-all hover:bg-neutral-50 dark:bg-surface-elevated dark:hover:bg-neutral-900 md:aspect-auto md:py-14"
           >
-            <div className="mb-4 rounded-2xl bg-blue-100 p-4 text-blue-600 transition-transform group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
+            <div className="mb-2 rounded-2xl bg-blue-100 p-4 text-blue-600 transition-transform group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400 md:mb-4">
               <Send className="size-8" />
             </div>
-            <h3 className="paragraph-hero text-center text-lg sm:text-xl">
-              Telegram
-            </h3>
-            <p className="paragraph-default mt-1 text-center text-sm">
+            <h3 className="paragraph-title">Telegram</h3>
+            <p className="paragraph-default mt-1 hidden text-center text-sm md:block">
               Connect on Telegram
             </p>
           </a>

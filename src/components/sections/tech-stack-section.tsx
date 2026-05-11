@@ -42,6 +42,7 @@ export default function TechStackSection() {
                 src={tech.img}
                 alt={tech.alt}
                 fill
+                sizes="(max-width: 768px) 100px, 200px"
                 draggable={false}
               />
             </div>
