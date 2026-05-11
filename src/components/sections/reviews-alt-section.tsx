@@ -10,7 +10,7 @@ export default function ReviewsAltSection() {
         'ShiroBIT delivered a website that perfectly captures the essence of our restaurant. The booking integration is seamless and our customers love the aesthetic.',
       name: 'Gusto Restaurant',
       designation: 'Culinary - Fine Dining',
-      src: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=3540&auto=format&fit=crop',
+      src: '/assets/portfolio/cr-1-1.png',
       link: 'https://gusto-restaurant.com',
     },
     {
@@ -18,7 +18,7 @@ export default function ReviewsAltSection() {
         'The portfolio layout is stunning. It showcases my work in a way that truly resonates with my clients. Highly recommended for creative professionals.',
       name: 'Lumina Studio',
       designation: 'Creative - Photography',
-      src: 'https://images.unsplash.com/photo-1492691523569-44058a15764e?q=80&w=3542&auto=format&fit=crop',
+      src: '/assets/portfolio/ag-1-1.png',
       link: 'https://lumina-studio.co',
     },
     {
@@ -26,7 +26,7 @@ export default function ReviewsAltSection() {
         'Strategic, fast, and high-quality. ShiroBIT is our go-to for all our web development needs. They understand the tech industry perfectly.',
       name: 'ShiroBIT',
       designation: 'Tech - Digital Consulting',
-      src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
+      src: '/assets/portfolio/ag-2-1.png',
       link: 'https://shirobit.com',
     },
     {
@@ -34,7 +34,7 @@ export default function ReviewsAltSection() {
         'Our conversion rates doubled since the relaunch. The performance optimization is unmatched and the design is incredibly professional.',
       name: 'Zenith Fitness',
       designation: 'Wellness - Gym & Training',
-      src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=3540&auto=format&fit=crop',
+      src: '/assets/portfolio/tr-1-1.png',
       link: 'https://zenith-fitness.app',
     },
     {
@@ -42,7 +42,7 @@ export default function ReviewsAltSection() {
         "The shopping experience is smooth and beautiful. Our customers love the new design and we've seen a significant increase in sales.",
       name: 'Bloom Florist',
       designation: 'Retail - E-commerce',
-      src: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=3540&auto=format&fit=crop',
+      src: '/assets/portfolio/cr-1-2.png',
       link: 'https://bloom-florist.shop',
     },
   ]

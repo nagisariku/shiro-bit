@@ -73,7 +73,7 @@ export default function PricingPage() {
         </section>
 
         {/* Feature Comparison - Parallel Load */}
-        <section className="mx-auto mb-24 w-full max-w-screen-lg">
+        <section id="comparisontable" className="mx-auto mb-24 w-full max-w-screen-lg">
           <BlurFade delay={0.2} inView>
             <div className="mb-10 text-center">
               <h2 className="mb-3 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-3xl">

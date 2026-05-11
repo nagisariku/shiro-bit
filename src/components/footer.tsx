@@ -1,37 +1,113 @@
-"use client"
-import * as React from "react";
+'use client'
+
+import * as React from 'react'
+import Link from 'next/link'
+import { Instagram, Mail, Send, MapPin } from 'lucide-react'
 
 export function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="py-8 border-t dark:border-dark-neutral mt-20">
-      <div className="container max-w-screen-xl mx-auto px-4 dark:text-neutral-200">
-        <div className="flex flex-col items-center gap-4">
-          <p className="text-center  max-w-[24rem]">
-            Thank you for your trust using our store. Don't forget to follow for more offers:
-          </p>
-          <a
-            href="https://instagram.com/shirobit.my.id"
-            target="_blank"
-            rel="noopener noreferrer"
-            className=" transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
+    <footer className="mt-20 border-t bg-neutral-50/50 py-16 dark:border-neutral-800 dark:bg-transparent">
+      <div className="container mx-auto max-w-screen-xl px-6">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand Section */}
+          <div className="lg:col-span-2">
+            <Link
+              href="/"
+              className="flex items-center gap-3 transition-opacity hover:opacity-90"
             >
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-            </svg>
-          </a>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-400 font-bold text-neutral-800 shadow-sm dark:from-neutral-700 dark:to-neutral-900 dark:text-neutral-200">
+                S
+              </div>
+              <span className="font-passion-conflict text-3xl font-medium tracking-tight">
+                ShiroBIT
+              </span>
+            </Link>
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Custom High-Quality Website Development for your business needs.
+              We craft high-fidelity digital experiences that drive growth,
+              engagement, and lasting impact.
+            </p>
+          </div>
+
+          {/* Contact Info Section */}
+          <div>
+            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
+              Contact
+            </h4>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800/50">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <span className="text-sm font-medium">Indonesia</span>
+              </div>
+              <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800/50">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <a
+                  href="mailto:mumuhshidiq@gmail.com"
+                  className="text-sm font-medium transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
+                >
+                  mumuhshidiq@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Socials Section */}
+          <div>
+            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
+              Follow Us
+            </h4>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://instagram.com/shirobit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-100 text-neutral-600 transition-all hover:scale-105 hover:bg-neutral-200 hover:text-neutral-900 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://t.me/shirobit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Telegram"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-100 text-neutral-600 transition-all hover:scale-105 hover:bg-neutral-200 hover:text-neutral-900 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                >
+                  <Send className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-16 border-t border-neutral-200 pt-8 dark:border-neutral-800">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <p className="text-sm font-medium text-neutral-500 dark:text-neutral-500">
+              @copywrite {currentYear} ShiroBIT. All rights reserved.
+            </p>
+            <div className="flex gap-8 text-sm font-medium text-neutral-500 dark:text-neutral-500">
+              <Link
+                href="#"
+                className="transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="#"
+                className="transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
+              >
+                Terms of Service
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

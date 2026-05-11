@@ -51,24 +51,20 @@ export default function HomePage() {
                 <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                   The Genesis
                 </div>
-                <h1 className="mb-8 text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl">
-                  Background Story
-                </h1>
-                <div className="mb-16 aspect-video w-full overflow-hidden rounded-3xl bg-neutral-100 dark:bg-neutral-900">
+                <h1 className="section-title mb-8">Background Story</h1>
+                {/* <div className="mb-16 aspect-video w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900">
                   <div className="flex h-full w-full items-center justify-center text-neutral-400 dark:text-neutral-600">
-                    <span className="text-sm font-medium">
+                    <span className="paragraph-small font-medium">
                       Video/Image Placeholder (16:9)
                     </span>
                   </div>
-                </div>
+                </div> */}
               </BlurFade>
 
               <div id="introduction" className="mb-16 scroll-mt-24">
                 <BlurFade delay={0.3} inView>
-                  <h2 className="mb-6 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
-                    Introduction
-                  </h2>
-                  <div className="prose prose-neutral dark:prose-invert max-w-none space-y-4 leading-relaxed text-neutral-600 dark:text-neutral-400">
+                  <h2 className="paragraph-hero mb-6">Introduction</h2>
+                  <div className="paragraph-default">
                     <p>
                       In today’s digital-first world, a strong online presence
                       is essential. Your website is more than just a place to
@@ -93,12 +89,10 @@ export default function HomePage() {
               <div id="our-services" className="mb-16 scroll-mt-24">
                 <BlurFade delay={0.4} inView>
                   <div className="mb-6 flex flex-wrap items-center gap-4">
-                    <h2 className="text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
-                      Our Services
-                    </h2>
+                    <h2 className="paragraph-hero">Our Services</h2>
                     <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white/60 px-3 py-1 text-xs font-medium text-neutral-600 shadow-sm backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-neutral-400">
                       <span className="flex h-2 w-2 animate-pulse rounded-full bg-green-500"></span>
-                      Operating Globally 🌍
+                      Operating Globally
                     </div>
                   </div>
 
@@ -124,13 +118,13 @@ export default function HomePage() {
                         key={i}
                         className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white/50 p-6 backdrop-blur-sm transition-colors hover:border-primary/20 hover:bg-primary/5 dark:border-neutral-800 dark:bg-neutral-900/50 dark:hover:border-primary/20 dark:hover:bg-primary/10"
                       >
-                        <div className="absolute -right-4 -top-4 text-8xl opacity-[0.03] transition-transform group-hover:scale-110 group-hover:opacity-[0.05] dark:opacity-[0.05] dark:group-hover:opacity-[0.08]">
+                        {/* <div className="absolute -right-4 -top-4 text-8xl opacity-[0.03] transition-transform group-hover:scale-110 group-hover:opacity-[0.05] dark:opacity-[0.05] dark:group-hover:opacity-[0.08]">
                           {service.icon}
-                        </div>
-                        <h3 className="relative z-10 mb-3 font-semibold text-neutral-800 dark:text-neutral-200">
+                        </div> */}
+                        <h3 className="paragraph-title relative z-10 mb-3">
                           {service.title}
                         </h3>
-                        <p className="relative z-10 text-sm text-neutral-600 dark:text-neutral-400">
+                        <p className="paragraph-small relative z-10">
                           {service.desc}
                         </p>
                       </div>
@@ -141,10 +135,10 @@ export default function HomePage() {
 
               <div id="more-than-website" className="mb-16 scroll-mt-24">
                 <BlurFade delay={0.5} inView>
-                  <h2 className="mb-6 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
+                  <h2 className="paragraph-hero mb-6">
                     More Than Just a Website
                   </h2>
-                  <div className="prose prose-neutral dark:prose-invert max-w-none space-y-6 text-neutral-600 dark:text-neutral-400">
+                  <div className="paragraph-default space-y-4">
                     <p>
                       We don’t simply design visually appealing websites. We
                       build strategic digital platforms that are engineered to
@@ -183,7 +177,7 @@ export default function HomePage() {
                       </li>
                     </ol>
 
-                    {/* <div className="mt-2 inline-block rounded-xl bg-neutral-100 p-4 text-sm font-medium text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200">
+                    {/* <div className="mt-2 inline-block rounded-xl bg-neutral-100 p-4 paragraph-small font-medium text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200">
                       <span className="font-semibold text-primary">
                         At ShiroBIT, we flip the script.
                       </span>{' '}
@@ -197,11 +191,9 @@ export default function HomePage() {
 
               <div id="our-clients" className="mb-16 scroll-mt-24">
                 <BlurFade delay={0.6} inView>
-                  <h2 className="mb-6 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
-                    Who's Our Clients?
-                  </h2>
+                  <h2 className="paragraph-hero mb-6">Who's Our Clients?</h2>
                   <div className="grid grid-cols-1 items-center gap-8">
-                    <div className="prose prose-neutral dark:prose-invert max-w-none text-neutral-600 dark:text-neutral-400">
+                    <div className="paragraph-default">
                       {/* <p className="font-medium text-neutral-800 dark:text-neutral-300">
                         We work with ambitious small business owners who refuse
                         to settle for average.
@@ -257,9 +249,7 @@ export default function HomePage() {
                 <div className="mb-4 inline-block rounded-full bg-indigo-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                   Our Edge
                 </div>
-                <h1 className="mb-6 text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl">
-                  Why Choose Us?
-                </h1>
+                <h1 className="section-title mb-6">Why Choose Us?</h1>
               </BlurFade>
 
               <div className="flex flex-col gap-20">
@@ -267,10 +257,10 @@ export default function HomePage() {
                 <div id="strategy-driven" className="scroll-mt-24">
                   <BlurFade delay={0.3} inView>
                     <div className="mb-8">
-                      <h2 className="mb-4 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
+                      <h2 className="paragraph-hero mb-4">
                         Engineered for Business Growth
                       </h2>
-                      <p className="text-neutral-600 dark:text-neutral-400">
+                      <p className="paragraph-default">
                         A beautiful website that doesn’t generate leads is just
                         an expensive digital painting. We bridge the gap between
                         stunning design and hard business results by starting
@@ -364,7 +354,7 @@ export default function HomePage() {
                             <h3 className="mb-1 font-semibold text-neutral-800 dark:text-neutral-200">
                               {feature.title}
                             </h3>
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                            <p className="paragraph-default paragraph-small">
                               {feature.desc}
                             </p>
                           </div>
@@ -378,10 +368,10 @@ export default function HomePage() {
                 <div id="premium-engineering" className="scroll-mt-24">
                   <BlurFade delay={0.4} inView>
                     <div className="mb-8">
-                      <h2 className="mb-4 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
+                      <h2 className="paragraph-hero mb-4">
                         Modern, Fast, and Future-Proof
                       </h2>
-                      <p className="text-neutral-600 dark:text-neutral-400">
+                      <p className="paragraph-default">
                         Say goodbye to bloated templates and slow loading times.
                         We build bespoke, hand-coded systems designed to look
                         elite today and scale flawlessly tomorrow.
@@ -511,10 +501,10 @@ export default function HomePage() {
                                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white backdrop-blur-sm">
                                   {feature.icon}
                                 </div>
-                                <h3 className="mb-2 text-xl font-semibold">
+                                <h3 className="paragraph-title mb-2 text-neutral-200">
                                   {feature.title}
                                 </h3>
-                                <p className="text-sm leading-relaxed text-neutral-200">
+                                <p className="paragraph-small leading-relaxed text-neutral-200">
                                   {feature.desc}
                                 </p>
                               </div>
@@ -534,10 +524,10 @@ export default function HomePage() {
                 <div id="full-support" className="scroll-mt-24">
                   <BlurFade delay={0.5} inView>
                     <div className="mb-8">
-                      <h2 className="mb-4 text-2xl font-semibold text-neutral-800 dark:text-neutral-200">
+                      <h2 className="paragraph-hero mb-4">
                         Complete Ownership & Peace of Mind
                       </h2>
-                      <p className="text-neutral-600 dark:text-neutral-400">
+                      <p className="paragraph-default">
                         We don't hold your website hostage. Our relationship
                         doesn't end at the launch button—we provide the safety
                         net and transparency that most agencies avoid.
@@ -630,7 +620,7 @@ export default function HomePage() {
                             <h3 className="mb-1 font-semibold text-neutral-800 dark:text-neutral-200">
                               {item.title}
                             </h3>
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                            <p className="paragraph-default paragraph-small">
                               {item.desc}
                             </p>
                           </div>
@@ -651,11 +641,9 @@ export default function HomePage() {
                 <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                   The Person
                 </div>
-                <h1 className="mb-8 text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl">
-                  About Owner
-                </h1>
+                <h1 className="section-title mb-8">About Owner</h1>
                 <div className="flex flex-col gap-8 md:flex-row">
-                  <div className="flex-1 space-y-4 text-neutral-600 dark:text-neutral-400">
+                  <div className="paragraph-default flex-1 space-y-4">
                     <p>
                       I started{' '}
                       <strong className="text-neutral-800 dark:text-neutral-200">
@@ -709,13 +697,13 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-24 aspect-video w-full overflow-hidden rounded-3xl bg-neutral-100 dark:bg-neutral-900">
+        {/* <div className="mt-24 aspect-video w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900">
           <div className="flex h-full w-full items-center justify-center text-neutral-400 dark:text-neutral-600">
-            <span className="text-sm font-medium">
+            <span className="paragraph-small font-medium">
               Bottom Video/Image Placeholder (16:9)
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

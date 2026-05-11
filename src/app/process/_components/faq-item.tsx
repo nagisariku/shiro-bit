@@ -16,15 +16,11 @@ export function FaqItem({
     <div className="overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex cursor-pointer items-center gap-3 py-3 text-left text-sm font-medium text-neutral-800 transition-colors hover:text-primary dark:text-neutral-200 dark:hover:text-primary md:text-base"
+        className="paragraph-default paragraph-default flex cursor-pointer items-center gap-2 py-2"
       >
         <span>{question}</span>
         <div className="flex shrink-0 items-center justify-center text-neutral-400 dark:text-neutral-500">
-          {open ? (
-            <Minus className="h-5 w-5" />
-          ) : (
-            <Plus className="h-5 w-5" />
-          )}
+          {open ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
         </div>
       </button>
       <div
@@ -34,9 +30,7 @@ export function FaqItem({
         )}
       >
         <div className="overflow-hidden">
-          <div className="pb-6 pt-1 text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-            {answer}
-          </div>
+          <div className="paragraph-default pb-6 pt-1">{answer}</div>
         </div>
       </div>
     </div>

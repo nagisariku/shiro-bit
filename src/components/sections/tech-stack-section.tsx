@@ -27,25 +27,22 @@ export default function TechStackSection() {
       <div className="section-wrapper text-center">
         <h2 className="section-title">Bring The Latest Technology</h2>
         <p className="section-subtitle">
-          We use industry-leading frameworks like Next.js, React, Tailwind CSS,
-          Node.js, and ShadCN to create fast, scalable, and future-ready
+          We use industry-leading frameworks like Next.js, Tailwind, Shadcn,
+          Framer Motion and more to create fast, scalable, and future-ready
           websites.
         </p>
-        <Marquee
-          reverse
-          className="mx-auto max-w-screen-lg [--duration:40s]"
-          gap={4}
-        >
+        <Marquee reverse className="mx-auto [--duration:40s]" gap={4}>
           {techstacks.map((tech) => (
             <div
               key={tech.alt}
               className="relative flex h-16 w-24 items-center justify-center md:h-24 md:w-48"
             >
               <Image
-                className={`object-contain ${tech.class || ''}`}
+                className={`object-contain select-none pointer-events-none ${tech.class || ''}`}
                 src={tech.img}
                 alt={tech.alt}
                 fill
+                draggable={false}
               />
             </div>
           ))}

@@ -19,9 +19,10 @@ import {
 } from '@/components/ui/sheet'
 import { ModeToggle } from '@/components/darkmode-toggle'
 import { Button } from '@/components/ui/button'
-import { Menu } from 'lucide-react'
+import { Menu, Instagram, Mail, Send, MapPin } from 'lucide-react'
 
 export function Navigation() {
+  const [isOpen, setIsOpen] = React.useState(false)
   return (
     <>
       <div className="flex w-full items-start justify-center gap-1.5 bg-yellow-200 px-4 py-2 text-start font-inter text-sm text-black md:h-10 md:text-center md:text-base">
@@ -92,7 +93,7 @@ export function Navigation() {
           <div className="flex items-center gap-2 md:gap-3">
             <ModeToggle />
             {/* Mobile Navigation - Hidden on desktop */}
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
                 <Button
                   variant="default"
@@ -101,14 +102,10 @@ export function Navigation() {
                 >
                   <Menu className="h-[1.2rem] w-[1.2rem]" />
                 </Button>
-                {/* <Button variant="ghost" size="icon">
-                  <Menu />
-                  <span className="sr-only">Toggle menu</span>
-                </Button> */}
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="border-none bg-neutral-200 dark:bg-neutral-950"
+                className="flex flex-col border-none bg-neutral-200 dark:bg-neutral-950"
               >
                 <SheetHeader>
                   <SheetTitle className="text-start text-2xl">Menu</SheetTitle>
@@ -117,35 +114,90 @@ export function Navigation() {
                 <nav className="mt-8 flex flex-col gap-4">
                   <Link
                     href="/home"
-                    className="text-lg font-medium hover:underline"
+                    onClick={() => setIsOpen(false)}
+                    className="paragraph-hero"
                   >
                     Home
                   </Link>
                   <Link
                     href="/portfolio"
-                    className="text-lg font-medium hover:underline"
+                    onClick={() => setIsOpen(false)}
+                    className="paragraph-hero"
                   >
                     Portfolio
                   </Link>
                   <Link
                     href="/pricing"
-                    className="text-lg font-medium hover:underline"
+                    onClick={() => setIsOpen(false)}
+                    className="paragraph-hero"
                   >
                     Pricing
                   </Link>
                   <Link
                     href="/process"
-                    className="text-lg font-medium hover:underline"
+                    onClick={() => setIsOpen(false)}
+                    className="paragraph-hero"
                   >
                     Process
                   </Link>
                   <Link
-                    href="/#contact"
-                    className="text-lg font-medium hover:underline"
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="paragraph-hero"
                   >
                     Contact
                   </Link>
                 </nav>
+
+                <div className="mt-auto space-y-6 pb-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-neutral-300 dark:bg-neutral-800" />
+                      <span className="font-passion-conflict text-xl">
+                        ShiroBIT
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-sm">
+                      Custom High-Quality Website Development for your business
+                      needs.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm">
+                      <MapPin className="text-muted-foreground h-4 w-4" />
+                      <span>Indonesia</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Mail className="text-muted-foreground h-4 w-4" />
+                      <a
+                        href="mailto:mumuhshidiq@gmail.com"
+                        className="hover:underline"
+                      >
+                        mumuhshidiq@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 pt-2">
+                    <a
+                      href="https://instagram.com/shirobit"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-neutral-300 p-2 transition-colors hover:bg-neutral-400 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+                    >
+                      <Instagram className="h-5 w-5" />
+                    </a>
+                    <a
+                      href="https://t.me/shirobit"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-neutral-300 p-2 transition-colors hover:bg-neutral-400 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+                    >
+                      <Send className="h-5 w-5" />
+                    </a>
+                  </div>
+                </div>
               </SheetContent>
             </Sheet>
           </div>

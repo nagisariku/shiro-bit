@@ -25,9 +25,7 @@ export function TimelineStep({
           onClick={() => setOpen((v) => !v)}
           className="flex items-center gap-3 py-2 text-left"
         >
-          <span className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
-            {step.title}
-          </span>
+          <span className="paragraph-hero">{step.title}</span>
           <ChevronDown
             className={cn(
               'h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-200',
@@ -44,9 +42,7 @@ export function TimelineStep({
         >
           <div className="overflow-hidden">
             <div className="space-y-4 pt-2">
-              <p className="text-base text-neutral-600 dark:text-neutral-400">
-                {step.description}
-              </p>
+              <p className="paragraph-default">{step.description}</p>
               {step.content}
             </div>
           </div>
@@ -82,9 +78,7 @@ export function TimelineStep({
             onClick={() => setOpen((v) => !v)}
             className="mb-1 inline-flex items-center gap-2 text-left"
           >
-            <h3 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
-              {step.title}
-            </h3>
+            <h3 className="paragraph-hero">{step.title}</h3>
             <ChevronDown
               className={cn(
                 'h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-200',
@@ -93,9 +87,7 @@ export function TimelineStep({
             />
           </button>
 
-          <p className="mb-4 text-base text-neutral-600 dark:text-neutral-400">
-            {step.description}
-          </p>
+          <p className="paragraph-default mb-4">{step.description}</p>
 
           <div
             className={cn(

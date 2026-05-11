@@ -8,7 +8,18 @@ import { BlurFade } from '@/components/magicui/blur-fade'
 import { cn } from '@/lib/utils'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { WebTemplateType } from '@/types'
-import { Check, Eye, FileText, ShoppingCart, ChevronDown } from 'lucide-react'
+import {
+  Check,
+  Eye,
+  FileText,
+  ShoppingCart,
+  ChevronDown,
+  Clock,
+  RefreshCw,
+  Layout,
+  CreditCard,
+  Globe,
+} from 'lucide-react'
 
 const INITIAL_SCREENSHOT_COUNT = 3
 
@@ -41,27 +52,25 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
         </Link>
 
         {/* Header */}
-        <div className="mb-6 w-full max-w-screen-lg">
+        <div className="my-6 w-full max-w-screen-lg space-y-3">
           {/* Category badge */}
-          <span className="mb-3 inline-block rounded-full border border-neutral-200 px-3 py-1 text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+          <span className="inline-block rounded-full border border-neutral-200 px-3 py-1 text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
             {webData.category}
           </span>
 
           {/* Title */}
-          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-            {webData.title}
-          </h1>
+          <h1 className="page-title mb-0">{webData.title}</h1>
 
           {/* Subtitle */}
           {webData.subtitle && (
-            <p className="text-lg text-neutral-600 dark:text-neutral-400">
+            <p className="section-subtitle-portfolio mb-0">
               {webData.subtitle}
             </p>
           )}
         </div>
 
         {/* Thumbnail */}
-        <div className="mb-10 w-full max-w-screen-lg">
+        <div className="mb-10 w-full">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-neutral-100 dark:bg-zinc-800">
             <Image
               src={webData.thumbnail}
@@ -76,51 +85,24 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
         </div>
 
         {/* Two-column body */}
-        <div className="w-full max-w-screen-lg">
+        <div className="w-full">
           <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
             {/* ── LEFT COLUMN ── */}
-            <div className="flex flex-col gap-12 lg:flex-[5]">
+            <div className="flex flex-col gap-12 md:flex-[5]">
               {/* About */}
               <section>
                 <div className="mb-4 flex items-center gap-3">
-                  <FileText className="size-5 text-brand" />
-                  <h2 className="text-2xl font-bold">About</h2>
+                  <h2 className="section-title mb-0">About</h2>
                 </div>
-                <div className="prose prose-neutral dark:prose-invert max-w-none">
-                  <p className="whitespace-pre-wrap leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    {webData.Description}
-                  </p>
-                </div>
-              </section>
-
-              {/* Key Features */}
-              <section>
-                <div className="mb-6 flex items-center gap-3">
-                  <Check className="size-5 text-brand" />
-                  <h2 className="text-2xl font-bold">Key Features</h2>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {(webData.features ?? []).map((feature, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3 rounded-xl border border-neutral-100 bg-neutral-50/50 p-4 dark:border-neutral-800 dark:bg-zinc-900/50"
-                    >
-                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
-                        <Check className="size-4" />
-                      </div>
-                      <span className="text-neutral-700 dark:text-neutral-300">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
+                <div className="">
+                  <p className="paragraph-default">{webData.Description}</p>
                 </div>
               </section>
 
               {/* Screenshots Gallery */}
               <section>
                 <div className="mb-6 flex items-center gap-3">
-                  <Eye className="size-5 text-brand" />
-                  <h2 className="text-2xl font-bold">Gallery</h2>
+                  <h2 className="section-title mb-0">Gallery</h2>
                 </div>
                 <div className="grid gap-6">
                   {visibleScreenshots.map((src, idx) => (
@@ -144,9 +126,13 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
                     <Button
                       variant="ghost"
                       className="gap-2 text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100"
-                      onClick={() => setScreenshotsExpanded(!screenshotsExpanded)}
+                      onClick={() =>
+                        setScreenshotsExpanded(!screenshotsExpanded)
+                      }
                     >
-                      {screenshotsExpanded ? 'Show Less' : 'Show More Screenshots'}
+                      {screenshotsExpanded
+                        ? 'Show Less'
+                        : 'Show More Screenshots'}
                       <ChevronDown
                         className={cn(
                           'size-4 transition-transform duration-300',
@@ -160,58 +146,93 @@ export function PortfolioItemClient({ webData }: PortfolioItemClientProps) {
             </div>
 
             {/* ── RIGHT COLUMN (Sidebar) ── */}
-            <aside className="lg:flex-[2]">
+            <aside className="md:flex-[2]">
               <div className="sticky top-24 space-y-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-zinc-950">
-                  <div className="mb-6">
-                    <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                      Starting at
-                    </span>
-                    <div className="mt-1 text-4xl font-bold text-brand">
-                      {webData.price}
+                  <h3 className="boxinfo-title">Charges & Development</h3>
+
+                  {/* Charges Info Section */}
+                  <div className="mb-8 space-y-4">
+                    <h4 className="boxinfo-label">Package Plan</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-3 text-sm">
+                        <div className="flex items-start gap-2 text-neutral-500 dark:text-neutral-400">
+                          <Layout className="boxinfo-icon mt-0.5" />
+                          <span className="leading-tight">Development</span>
+                        </div>
+                        <span className="boxinfo-value shrink-0 text-right leading-tight">
+                          {webData.chargesInfo?.development || '-'}
+                        </span>
+                      </div>
+                      <div className="flex items-start justify-between gap-3 text-sm">
+                        <div className="flex items-start gap-2 text-neutral-500 dark:text-neutral-400">
+                          <CreditCard className="boxinfo-icon mt-0.5" />
+                          <span className="leading-tight">Package Plan</span>
+                        </div>
+                        <span className="boxinfo-value shrink-0 text-right leading-tight">
+                          {webData.chargesInfo?.packagePlan || '-'}
+                        </span>
+                      </div>
+                      <div className="flex items-start justify-between gap-3 text-sm">
+                        <div className="flex items-start gap-2 text-neutral-500 dark:text-neutral-400">
+                          <Globe className="boxinfo-icon mt-0.5" />
+                          <span className="leading-tight">
+                            Hosting & Domain (Monthly)
+                          </span>
+                        </div>
+                        <span className="boxinfo-value shrink-0 text-right leading-tight">
+                          {webData.chargesInfo?.maintenanceHostingDomain || '-'}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <Button
-                      className="h-12 w-full bg-brand text-lg font-bold text-white hover:bg-brand/90"
-                      asChild
-                    >
-                      <Link
-                        href={`https://wa.me/6281234567890?text=Halo ShiroBIT, saya tertarik dengan template ${webData.title}`}
-                        target="_blank"
-                      >
-                        <ShoppingCart className="mr-2 size-5" />
-                        I'm Interested
-                      </Link>
-                    </Button>
-
-                    {webData.url && (
-                      <Button
-                        variant="outline"
-                        className="h-12 w-full border-neutral-200 text-lg font-medium dark:border-neutral-800"
-                        asChild
-                      >
-                        <Link href={webData.url} target="_blank">
-                          <Eye className="mr-2 size-5" />
-                          Live Preview
-                        </Link>
-                      </Button>
-                    )}
+                  {/* Development Info Section */}
+                  <div className="mb-10 space-y-4">
+                    <h4 className="boxinfo-label">Development</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-3 text-sm">
+                        <div className="flex items-start gap-2 text-neutral-500 dark:text-neutral-400">
+                          <Clock className="boxinfo-icon mt-0.5" />
+                          <span className="leading-tight">
+                            Delivery Time (Days)
+                          </span>
+                        </div>
+                        <span className="boxinfo-value shrink-0 text-right leading-tight">
+                          {webData.developmentInfo?.deliveryTime || '-'}
+                        </span>
+                      </div>
+                      <div className="flex items-start justify-between gap-3 text-sm">
+                        <div className="flex items-start gap-2 text-neutral-500 dark:text-neutral-400">
+                          <RefreshCw className="boxinfo-icon mt-0.5" />
+                          <span className="leading-tight">Total Revisions</span>
+                        </div>
+                        <span className="boxinfo-value shrink-0 text-right leading-tight">
+                          {webData.developmentInfo?.totalRevisions || '-'}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
-                  <p className="mt-6 text-center text-xs text-neutral-500 dark:text-neutral-400">
-                    Includes setup, basic customization, and 1-year maintenance
-                  </p>
-                </div>
-
-                {/* Categories/Tags */}
-                <div className="rounded-2xl border border-neutral-200 bg-neutral-50/50 p-6 dark:border-neutral-800 dark:bg-zinc-900/50">
-                  <h3 className="mb-4 font-bold">Category</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="rounded-lg bg-white px-3 py-1.5 text-sm font-medium shadow-sm dark:bg-zinc-800">
-                      {webData.category}
-                    </span>
+                  {/* CTA Section */}
+                  <div className="space-y-4 border-t border-neutral-100 pt-6 dark:border-neutral-800">
+                    <p className="text-center text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                      Want a website like this for your business?
+                    </p>
+                    {/* <Link href="/contact" className="block">
+                      <Button className="h-12 w-full rounded-xl bg-neutral-900 font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98] dark:bg-white dark:text-black">
+                        I'm Interested!
+                      </Button>
+                    </Link> */}
+                    <Button
+                      variant="default"
+                      className="w-full rounded-xl py-6 text-base dark:border-border-subtle sm:px-12"
+                      asChild
+                    >
+                      <Link href="/contact" aria-label="">
+                        I'm Interested!
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>

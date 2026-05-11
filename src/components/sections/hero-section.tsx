@@ -6,11 +6,12 @@ import { AnimatedGradientText } from '@/components/magicui/animated-gradient-tex
 import { TextAnimate } from '@/components/magicui/text-animate'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 export default function HeroSection() {
   return (
     <div className="mx-auto mb-8 flex min-h-[72vh] max-w-screen-xl flex-col items-center justify-center px-6 py-8 text-center">
-      <div className="group relative mx-auto mb-6 flex w-fit cursor-pointer items-center justify-center rounded-full px-3 py-1 text-sm shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 hover:shadow-[inset_0_-5px_10px_#8fdfff3f] md:w-[16rem] md:px-4 md:py-1.5 md:text-lg">
+      <div className="group relative mx-auto mb-6 flex w-fit cursor-pointer items-center justify-center rounded-full px-3 py-1 text-sm duration-500 md:w-[16rem] md:px-4 md:py-1.5 md:text-lg">
         <span
           className={cn(
             'from-accent-1/50 via-accent-2/50 to-accent-1/50 absolute inset-0 animate-gradient rounded-full bg-gradient-to-r bg-[length:300%_100%] p-[1px]',
@@ -61,8 +62,9 @@ export default function HeroSection() {
         <Button
           variant="outline"
           className="rounded-xl px-8 py-5 text-sm md:py-6 md:text-lg"
+          asChild
         >
-          Case Studies
+          <Link href="/portfolio">Case Studies</Link>
         </Button>
       </div>
     </div>

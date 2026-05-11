@@ -43,33 +43,23 @@ const TemplateSection = ({
   return (
     <section className="my-20 first:mt-8">
       <div className="mb-10 max-w-screen-xl">
-        <h2 className="mb-4 text-start text-3xl font-bold tracking-tight md:text-4xl">
-          {title}
-        </h2>
-        <h3 className="mb-6 text-start text-xl font-medium text-neutral-900 dark:text-neutral-100 md:text-2xl">
-          {subHeadline}
-        </h3>
-        <div className="space-y-4 text-start text-neutral-600 dark:text-neutral-400">
+        <h2 className="section-title">{title}</h2>
+        <h3 className="section-subtitle-portfolio">{subHeadline}</h3>
+        <div className="paragraph-default space-y-4">
           {paragraphs.map((p, i) => (
-            <p key={i} className="leading-relaxed">
-              {p}
-            </p>
+            <p key={i}>{p}</p>
           ))}
         </div>
 
         <div className="mt-8 max-w-screen-md rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50">
-          <h4 className="mb-4 font-semibold text-neutral-900 dark:text-neutral-50">
-            What you gain:
-          </h4>
+          <h4 className="paragraph-default mb-4">What you gain:</h4>
           <ul className="grid gap-3 md:grid-cols-2">
             {highlights.map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm">
                 <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-green-500/20 text-[10px] font-bold text-green-600 dark:text-green-400">
                   ✓
                 </span>
-                <span className="text-neutral-700 dark:text-neutral-300">
-                  {item}
-                </span>
+                <span className="paragraph-small">{item}</span>
               </li>
             ))}
           </ul>
@@ -148,10 +138,10 @@ export function TemplatesClient() {
       title: 'Cafe & Restaurant',
       category: 'Cafes and Restaurants',
       subHeadline:
-        'Turn hungry visitors into loyal customers — before they even walk in.',
+        'Turn hungry visitors into loyal customers, before they even walk in.',
       paragraphs: [
-        'Your food might be amazing, but if people can’t find you online, they’ll end up somewhere else. A website acts as your digital storefront — open 24/7, showcasing your menu, vibe, and experience.',
-        'Imagine someone searching for “best coffee near me.” Your website becomes the first impression: mouth-watering visuals, clear menu, easy reservations, and location details — all in seconds.',
+        'Your food might be amazing, but if people can’t find you online, they’ll end up somewhere else. A website acts as your digital storefront, open 24/7, showcasing your menu, vibe, and experience.',
+        'Imagine someone searching for “best coffee near me.” Your website becomes the first impression: mouth-watering visuals, clear menu, easy reservations, and location details, all in seconds.',
         'More than just information, it builds trust. Customers are far more likely to visit a place that looks alive, updated, and professional online.',
       ],
       highlights: [
@@ -168,8 +158,8 @@ export function TemplatesClient() {
       category: 'Hotels and Travel',
       subHeadline: 'Sell the experience before the journey begins.',
       paragraphs: [
-        'Travel decisions are emotional. People don’t just book rooms — they buy experiences. A website lets you control that narrative with stunning visuals, seamless booking, and compelling storytelling.',
-        'Instead of relying only on third-party platforms (that take commissions and limit your branding), your website becomes your own booking engine — increasing direct reservations and profit margins.',
+        'Travel decisions are emotional. People don’t just book rooms, they buy experiences. A website lets you control that narrative with stunning visuals, seamless booking, and compelling storytelling.',
+        'Instead of relying only on third-party platforms (that take commissions and limit your branding), your website becomes your own booking engine, increasing direct reservations and profit margins.',
         'It also builds credibility. Travelers trust businesses with a polished, informative online presence.',
       ],
       highlights: [
@@ -185,8 +175,8 @@ export function TemplatesClient() {
       subHeadline:
         'Make your business look as professional as the service you deliver.',
       paragraphs: [
-        'Whether you’re in property, car rental, fitness, or IT services — people judge your credibility in seconds. A website acts as proof that your business is real, established, and trustworthy.',
-        'It also simplifies your sales process. Instead of explaining everything manually, your website educates potential clients — services, pricing, testimonials — before they even contact you.',
+        'Whether you’re in property, car rental, fitness, or IT services, people judge your credibility in seconds. A website acts as proof that your business is real, established, and trustworthy.',
+        'It also simplifies your sales process. Instead of explaining everything manually, your website educates potential clients, services, pricing, testimonials, before they even contact you.',
         'Think of it as your best salesperson, working non-stop.',
       ],
       highlights: [
@@ -202,9 +192,9 @@ export function TemplatesClient() {
       subHeadline:
         'Build trust with students and parents before the first conversation.',
       paragraphs: [
-        'Education is about credibility and clarity. A website becomes the foundation for both — showcasing your programs, achievements, facilities, and values in a structured way.',
+        'Education is about credibility and clarity. A website becomes the foundation for both, showcasing your programs, achievements, facilities, and values in a structured way.',
         'Parents and students will research before making decisions. Without a website, you risk looking outdated or less trustworthy compared to competitors.',
-        'It’s also a communication hub — announcements, registration, course details — everything in one place.',
+        'It’s also a communication hub, announcements, registration, course details, everything in one place.',
       ],
       highlights: [
         'Strong institutional credibility',
@@ -216,10 +206,10 @@ export function TemplatesClient() {
     {
       title: 'Lifestyle Brands',
       category: 'Lifestyle Brands',
-      subHeadline: 'Turn your brand into an experience — not just a product.',
+      subHeadline: 'Turn your brand into an experience, not just a product.',
       paragraphs: [
-        'In lifestyle industries, perception is everything. A website lets you shape how people feel about your brand — through visuals, storytelling, and seamless shopping experiences.',
-        'Unlike marketplaces or social media, your website is fully yours. No distractions, no competitors next to your product — just your brand, your identity.',
+        'In lifestyle industries, perception is everything. A website lets you shape how people feel about your brand, through visuals, storytelling, and seamless shopping experiences.',
+        'Unlike marketplaces or social media, your website is fully yours. No distractions, no competitors next to your product, just your brand, your identity.',
         'It also scales your business. From showcasing collections to enabling online sales, your website becomes your digital flagship store.',
       ],
       highlights: [

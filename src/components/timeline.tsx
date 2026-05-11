@@ -40,11 +40,9 @@ const FixedTimeline = () => {
                   {item.icon && <div className="text-primary">{item.icon}</div>}
                 </div>
 
-                <div className="">
-                  <h3 className="mb-2 font-medium">{item.title}</h3>
-                  <p className="text-sm text-neutral-800 dark:text-neutral-100">
-                    {item.desc}
-                  </p>
+                <div className="flex flex-col">
+                  <h3 className="paragraph-title">{item.title}</h3>
+                  <p className="paragraph-default">{item.desc}</p>
                 </div>
               </div>
             </BlurFade>

@@ -4,11 +4,13 @@ import React from 'react'
 import { BlurFade } from '@/components/magicui/blur-fade'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface FeatureItemProps {
   title: string
   description: string
   category: string
+  image: string
   reverse?: boolean
 }
 
@@ -16,14 +18,36 @@ const FeatureItem = ({
   title,
   description,
   category,
+  image,
   reverse,
 }: FeatureItemProps) => {
   return (
     <div className="grid w-full grid-cols-1 md:grid-cols-2">
+      {/* Image Column */}
+      <div
+        className={`relative mx-auto mb-6 h-48 w-48 overflow-hidden md:mb-0 md:aspect-square md:h-[24rem] md:w-[24rem] ${
+          reverse ? 'md:order-1' : 'md:order-2'
+        }`}
+      >
+        <BlurFade
+          delay={0.3}
+          inView
+          className="h-full w-full rounded-2xl dark:border-border-subtle md:border"
+        >
+          <Image
+            src={image}
+            alt={title}
+            width={600}
+            height={600}
+            className="h-full w-full object-cover"
+          />
+        </BlurFade>
+      </div>
+
       {/* Text Column */}
       <div
-        className={`flex flex-col items-center justify-center px-6 py-4 text-center sm:px-12 md:items-start md:py-20 md:text-left lg:px-16 ${
-          reverse ? 'md:order-2 md:pl-20' : 'md:order-1 md:pr-20'
+        className={`flex flex-col items-center justify-center px-6 pb-8 pt-0 text-center sm:px-6 md:items-start md:py-8 md:text-left ${
+          reverse ? 'md:order-2' : 'md:order-1'
         }`}
       >
         <BlurFade
@@ -31,30 +55,9 @@ const FeatureItem = ({
           inView
           className="flex flex-col items-center md:items-start"
         >
-          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 md:text-2xl">
-            {title}
-          </h3>
-          <p className="mb-2 text-xs text-neutral-500 dark:text-neutral-400">
-            {category}
-          </p>
-          <p className="max-w-md text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
-            {description}
-          </p>
-        </BlurFade>
-      </div>
-
-      {/* Image Column */}
-      <div
-        className={`relative hidden min-h-[280px] w-full overflow-hidden rounded-3xl bg-surface-muted md:block md:min-h-full ${
-          reverse ? 'md:order-1' : 'md:order-2'
-        }`}
-      >
-        <BlurFade delay={0.3} inView className="h-full w-full">
-          <div className="flex h-full w-full items-center justify-center text-neutral-400 dark:text-neutral-600">
-            <span className="text-[10px] font-medium uppercase tracking-[0.3em]">
-              Section Image
-            </span>
-          </div>
+          <h3 className="paragraph-hero">{title}</h3>
+          <p className="paragraph-small mb-2 uppercase">{category}</p>
+          <p className="paragraph-default">{description}</p>
         </BlurFade>
       </div>
     </div>
@@ -66,42 +69,47 @@ const features = [
     category: 'Credibility',
     title: 'Build Trust at First Click',
     description:
-      'Your website is the foundation of your professional identity. It provides a central, trustworthy home for your brand where customers can discover your story and feel confident choosing your services over fragmented social media profiles.',
+      'Your website is the foundation of your professional identity. It provides a central, trustworthy home for your brand where customers can discover your story and feel confident choosing your services.',
+    image: '/assets/items/credibility.png',
   },
   {
     category: 'Sales',
     title: 'Turn Visitors into Customers',
     description:
-      'Take full control of your sales journey. Showcase your complete catalog and guide visitors step-by-step toward a purchase with a site designed specifically to convert interest into results, 24/7.',
+      'Take full control of your sales journey. Showcase your complete catalog and guide visitors step-by-step toward a purchase with a site designed specifically to convert interest into results.',
+    image: '/assets/items/sales.png',
   },
   {
     category: 'Growth',
     title: 'Reach Beyond Your Local Area',
     description:
-      'Break free from the limits of local foot traffic. A well-optimized website puts your business on the global map, allowing search engines to connect you with customers who are looking for exactly what you offer.',
+      'Expand your reach through search engines and connect with customers beyond your local community who are looking for exactly what you offer.',
+    image: '/assets/items/growth.png',
   },
   {
     category: 'Marketing',
     title: 'Power Your Digital Strategy',
     description:
       'Everything leads back to your site. It acts as the intelligent hub for all your ads and promotions, giving you the tracking and conversion potential that third-party platforms simply can’t match.',
+    image: '/assets/items/marketing.png',
   },
   {
     category: 'Systems',
     title: 'Connect, Automate, and Scale',
     description:
-      'Your website is more than a display—it’s a business system. Integrate automation, payments, and analytics to transform your site into a high-efficiency engine that grows alongside your business.',
+      'Build a system designed for long-term growth. Integrate tools, automate workflows, and scale your business efficiently as your needs evolve.',
+    image: '/assets/items/system.png',
   },
 ]
 
 export default function WhyWebsiteSection() {
   return (
-    <section id="why-website" className="section-wrapper-sm sm:px-6 lg:px-8">
+    <section id="why-website" className="section-wrapper-sm md:px-6">
       <div className="mb-8 text-center">
         <BlurFade delay={0.2} inView>
-          <h2 className="section-title">Why Need a Website?</h2>
+          <h2 className="section-title">Why it matters?</h2>
           <p className="section-subtitle">
-            In today&apos;s digital world, a website isn&apos;t just an option —
+            In today&apos;s digital world, a website isn&apos;t just an option,
             it&apos;s your business&apos;s foundation for growth, trust, and
             long-term success.
           </p>
@@ -115,6 +123,7 @@ export default function WhyWebsiteSection() {
             category={feature.category}
             title={feature.title}
             description={feature.description}
+            image={feature.image}
             reverse={index % 2 !== 0}
           />
         ))}

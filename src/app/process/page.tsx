@@ -22,7 +22,7 @@ export default function ProcessPage() {
       </div> */}
 
       <div className="container relative z-10 mx-auto flex max-w-screen-xl flex-col items-start justify-start px-6 py-0 lg:p-12">
-        <Link href="/home" className="group back-link">
+        <Link href="/home" className="back-link group">
           <FaArrowLeft className="transition-transform group-hover:-translate-x-1" />
           <span className="font-medium">Back to Home</span>
         </Link>
@@ -31,14 +31,12 @@ export default function ProcessPage() {
           id="process-faqs"
           className="mx-auto mb-24 max-w-screen-lg scroll-mt-24"
         >
-          <div className="text-center">
+          <div className="mb-16 text-center">
             <BlurFade delay={0.2}>
               <div className="page-badge bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
                 The Roadmap
               </div>
-              <h1 className="page-title">
-                How We Work
-              </h1>
+              <h1 className="page-title">How We Work</h1>
               <p className="page-subtitle">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
                 est, quibusdam corporis distinctio id repellat esse excepturi
