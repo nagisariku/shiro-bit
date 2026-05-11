@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import {
   DollarSign,
   Link as LinkIcon,
@@ -59,53 +59,76 @@ const STORAGE_KEY = 'contact-form-draft'
 
 export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false)
+  const [isRestored, setIsRestored] = useState(false)
+  const [resetCount, setResetCount] = useState(0)
+
+  const defaultFormValues = useMemo(() => ({
+    name: '',
+    email: '',
+    countryCode: '',
+    phone: '',
+    plan: (defaultPlan as any) || undefined,
+    maintenanceType: undefined,
+    paymentMethod: undefined,
+    paymentSchedule: undefined,
+    projectName: '',
+    websiteType: '',
+    businessCategory: '',
+    designSource: undefined,
+    googleDriveLink: '',
+    notes: '',
+    estimatedBudget: '800',
+  }), [defaultPlan])
+
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      countryCode: '',
-      phone: '',
-      plan: (defaultPlan as any) || undefined,
-      maintenanceType: undefined,
-      paymentMethod: undefined,
-      paymentSchedule: undefined,
-      projectName: '',
-      websiteType: '',
-      businessCategory: '',
-      googleDriveLink: '',
-      notes: '',
-      estimatedBudget: '800',
-    },
+    defaultValues: defaultFormValues,
   })
 
   // Load saved data from localStorage on mount
   useEffect(() => {
+    if (typeof window === 'undefined') return
     const savedData = localStorage.getItem(STORAGE_KEY)
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData)
-        form.reset({
-          ...form.getValues(),
-          ...parsedData,
-        })
+        form.reset(parsedData)
+        
+        // Explicitly set Select values to ensure Radix UI catches the update
+        if (parsedData.websiteType) {
+          form.setValue('websiteType', parsedData.websiteType, { shouldValidate: true })
+        }
+        if (parsedData.businessCategory) {
+          form.setValue('businessCategory', parsedData.businessCategory, { shouldValidate: true })
+        }
+        
+        // Force remount of Select components now that they have correct values
+        setIsRestored(true)
       } catch (error) {
         console.error('Failed to load saved form data:', error)
       }
     }
   }, [form])
 
-  // Save form data to localStorage on change
+  // Watch form values for persistence
+  const formValues = form.watch()
+
+  // Save form data to localStorage on change with debounce
   useEffect(() => {
-    const subscription = form.watch((value) => {
+    if (typeof window === 'undefined') return
+    // Don't save if form was successfully submitted
+    if (form.formState.isSubmitSuccessful) return
+
+    const timer = setTimeout(() => {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(value))
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(formValues))
       } catch (error) {
         console.error('Failed to save form data to localStorage:', error)
       }
-    })
-    return () => subscription.unsubscribe()
-  }, [form])
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [formValues, form.formState.isSubmitSuccessful])
 
   const currentPlan = form.watch('plan')
   const maintenanceType = form.watch('maintenanceType')
@@ -148,10 +171,15 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
       const result = await sendContactEmail(data)
 
       if (result.success) {
-        localStorage.removeItem(STORAGE_KEY)
+        // Clear local storage and reset form ONLY on success
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem(STORAGE_KEY)
+        }
+        form.reset(defaultFormValues)
+        setResetCount(prev => prev + 1)
         setShowSuccessDialog(true)
-        form.reset()
       } else {
+        // On error, show toast but DON'T clear form or local storage
         showToast.error(result.error || 'Something went wrong. Please try again.')
       }
     } catch (error) {
@@ -163,6 +191,7 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
     <>
       <Form {...form}>
         <form
+          key={`contact-form-${resetCount}`}
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full max-w-screen-md space-y-6 md:space-y-12"
         >
@@ -716,7 +745,9 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <FormItem>
                         <FormLabel>Website Type</FormLabel>
                         <Select
+                          key={`websiteType-${isRestored}`}
                           onValueChange={field.onChange}
+                          defaultValue={field.value}
                           value={field.value}
                         >
                           <FormControl>
@@ -750,7 +781,9 @@ export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
                       <FormItem>
                         <FormLabel>Business Category</FormLabel>
                         <Select
+                          key={`businessCategory-${isRestored}`}
                           onValueChange={field.onChange}
+                          defaultValue={field.value}
                           value={field.value}
                         >
                           <FormControl>
