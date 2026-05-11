@@ -3,16 +3,16 @@
 import Mailjet from 'node-mailjet'
 import { type ContactFormValues } from './schema'
 
-const mailjet = new Mailjet({
-  apiKey: process.env.MJ_APIKEY_PUBLIC || '',
-  apiSecret: process.env.MJ_APIKEY_PRIVATE || '',
-})
-
 export async function sendContactEmail(data: ContactFormValues) {
   if (!process.env.MJ_APIKEY_PUBLIC || !process.env.MJ_APIKEY_PRIVATE) {
     console.error('Mailjet API keys are missing')
     return { success: false, error: 'Mailjet API keys are not configured.' }
   }
+
+  const mailjet = new Mailjet({
+    apiKey: process.env.MJ_APIKEY_PUBLIC,
+    apiSecret: process.env.MJ_APIKEY_PRIVATE,
+  })
 
   const {
     name,
