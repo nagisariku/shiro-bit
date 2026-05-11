@@ -32,12 +32,13 @@ interface WebTemplateType {
   whoItsFor?: string
   pages?: string[]
   chargesInfo?: {
-    developmentAndHosting: string
-    domain: string
+    development: string
+    packagePlan: string
+    maintenanceHostingDomain: string
   }
   developmentInfo?: {
-    deliveryDay: string
-    totalRevision: string
+    deliveryTime: string
+    totalRevisions: string
   }
 }
 

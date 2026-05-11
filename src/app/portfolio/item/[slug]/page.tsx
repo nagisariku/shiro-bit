@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${webData.title} - Website Template`,
-    description: webData.Description || `Explore the ${webData.title} website template at ShiroBIT.`,
+    description:
+      webData.Description ||
+      `Explore the ${webData.title} website template at ShiroBIT.`,
     openGraph: {
       title: `${webData.title} | ShiroBIT`,
       description: webData.Description,

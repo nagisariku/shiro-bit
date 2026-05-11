@@ -5,7 +5,8 @@ import { Check, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 
 import { Button } from '@/components/ui/button'
-import { comparisonSections, plans, createWhatsAppUrl, type FeatureValue } from '../constants'
+import Link from 'next/link'
+import { comparisonSections, plans, type FeatureValue } from '../constants'
 
 function FeatureCell({ value }: { value: FeatureValue }) {
   if (typeof value === 'boolean') {
@@ -170,13 +171,11 @@ export function ComparisonTable() {
                         : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50 dark:border-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-900'
                     }`}
                   >
-                    <a
-                      href={createWhatsAppUrl(plan.title, plan.price)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/contact?plan=${plan.title.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       Go {plan.title}
-                    </a>
+                    </Link>
                   </Button>
                 </div>
 

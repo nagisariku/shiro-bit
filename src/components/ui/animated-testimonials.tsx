@@ -86,7 +86,7 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={500}
                     draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
+                    className="h-full w-full rounded-2xl object-cover object-center"
                   />
                 </motion.div>
               ))}
@@ -113,13 +113,11 @@ export const AnimatedTestimonials = ({
               ease: 'easeInOut',
             }}
           >
-            <h3 className="text-2xl font-semibold text-black dark:text-white">
-              {testimonials[active].name}
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-neutral-500">
+            <h3 className="paragraph-hero">{testimonials[active].name}</h3>
+            <p className="paragraph-small uppercase">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-8 text-base text-gray-600 dark:text-neutral-300 lg:text-lg">
+            <motion.p className="paragraph-default mt-8">
               {testimonials[active].quote.split(' ').map((word, index) => (
                 <motion.span
                   key={index}
@@ -152,9 +150,9 @@ export const AnimatedTestimonials = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="mt-6 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+                className="text-neutral-800 dark:text-neutral-200 mt-6 inline-flex items-center hover:underline"
               >
-                Visit Website
+                visit website
                 <svg
                   className="ml-1 h-4 w-4"
                   fill="none"

@@ -11,7 +11,12 @@ export const metadata: Metadata = {
     'Ready to elevate your digital presence? Contact ShiroBIT today to discuss your website development project or template customization.',
 }
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>
+}) {
+  const { plan } = await searchParams
   return (
     <div className="container mx-auto flex max-w-screen-xl flex-col items-start justify-start px-6 py-0 lg:p-12">
       <Link href="/" className="group back-link">
@@ -37,7 +42,7 @@ export default function ContactPage() {
           </BlurFade>
         </div>
 
-        <ContactForm />
+        <ContactForm defaultPlan={plan} />
       </div>
     </div>
   )

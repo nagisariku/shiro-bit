@@ -54,12 +54,13 @@ export const WebTemplates: WebTemplateType[] = [
       'Dina Cafe is ideal for small cafe owners, independent coffee roasters, and artisan bakeries who want a professional online presence without the complexity of a full e-commerce platform. It suits those who prioritize ambiance and storytelling over heavy product catalogs.',
     pages: ['Home', 'Menu', 'About', 'Reservation', 'Contact'],
     chargesInfo: {
-      developmentAndHosting: '$199',
-      domain: 'Free (1st Year)',
+      development: '$199',
+      packagePlan: 'One-time Payment',
+      maintenanceHostingDomain: '$25',
     },
     developmentInfo: {
-      deliveryDay: '3-5 Days',
-      totalRevision: '3x',
+      deliveryTime: '3-5 Days',
+      totalRevisions: '3x',
     },
   },
   {
@@ -105,12 +106,13 @@ export const WebTemplates: WebTemplateType[] = [
       'Gusto Restaurant is built for upscale dining venues, boutique bistros, and culinary-focused establishments that want a website as polished as their plating. It suits restaurant owners who value brand storytelling and want to draw in food enthusiasts through a compelling digital experience.',
     pages: ['Home', 'Menu', 'Our Story', 'Chef', 'Reservations', 'Contact'],
     chargesInfo: {
-      developmentAndHosting: '$299',
-      domain: 'Free (1st Year)',
+      development: '$299',
+      packagePlan: 'One-time Payment',
+      maintenanceHostingDomain: '$35',
     },
     developmentInfo: {
-      deliveryDay: '5-7 Days',
-      totalRevision: '5x',
+      deliveryTime: '5-7 Days',
+      totalRevisions: '5x',
     },
   },
   {

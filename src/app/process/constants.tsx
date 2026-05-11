@@ -2,6 +2,7 @@ import React from 'react'
 import { FaqItem } from './_components/faq-item'
 import { WarningIcon, CheckCircleIcon } from './_components/icons'
 import { type Step } from './types'
+import Link from 'next/link'
 
 export const steps: Step[] = [
   {
@@ -12,39 +13,37 @@ export const steps: Step[] = [
       "Let's align our vision. To give you the most accurate quote and timeline, we need to understand your business.",
     content: (
       <div className="space-y-4">
-        <div className="max-w-3xl rounded-2xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900/50">
-          <h4 className="mb-4 font-semibold text-neutral-800 dark:text-neutral-200">
+        <div className="border-default max-w-3xl">
+          <h4 className="paragraph-default mb-2 font-semibold text-neutral-900 dark:text-neutral-100">
             Action Steps:
           </h4>
-          <ol className="mb-6 ml-4 list-decimal space-y-2 text-base text-neutral-600 dark:text-neutral-400">
+          <ol className="paragraph-default mb-4 ml-6 list-decimal space-y-2">
             <li>
-              Collect all the requirements into your Google Drive folder and make
-              it public.
+              Collect all the requirements into your Google Drive folder and
+              make it public.
             </li>
             <li>
               Fill out{' '}
-              <a href="#" className="font-medium text-primary hover:underline">
+              <Link
+                href="contact"
+                className="font-semibold text-neutral-900 underline underline-offset-4 hover:text-neutral-700 dark:text-neutral-100 dark:hover:text-neutral-300"
+              >
                 this form
-              </a>{' '}
+              </Link>{' '}
               and click send.
             </li>
           </ol>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 text-base font-medium text-amber-600 dark:text-amber-500">
+          <div className="flex flex-col gap-2">
+            <div className="paragraph-default flex items-center gap-2 text-amber-600 dark:text-amber-500">
               <WarningIcon />
               <span>
-                <strong className="font-bold">Caution:</strong> Use your active
-                contact/email! Your privacy is safe with us.
+                Use your active contact/email! Your privacy is safe with us.
               </span>
-            </div>
-            <div className="flex items-center gap-2 text-base font-medium text-green-600 dark:text-green-500">
-              <CheckCircleIcon />I personally respond to all emails within 24
-              hours.
             </div>
           </div>
         </div>
 
-        <div className="max-w-3xl space-y-3">
+        <div className="max-w-3xl">
           <FaqItem
             question="What example of requirements could I collect?"
             answer="You can collect your logo, assets, specific requirement notes, links, copywriting, design references (images, Figma, XD, etc.), and any other relevant materials."
@@ -72,7 +71,7 @@ export const steps: Step[] = [
                 <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106z" />
               </svg>
             </div>
-            <span className="text-base font-medium text-neutral-800 dark:text-neutral-200">
+            <span className="paragraph-default text-neutral-800 dark:text-neutral-200">
               Pay via secure PayPal link
             </span>
           </div>
@@ -82,13 +81,13 @@ export const steps: Step[] = [
                 <path d="M6.353 19.34L18.995 3.323l-3.323-.004L4.545 17.514l1.808 1.826zm14.331-4.838l-1.803-1.827L7.697 21.68h3.325l9.662-7.178z" />
               </svg>
             </div>
-            <span className="text-base font-medium text-neutral-800 dark:text-neutral-200">
+            <span className="paragraph-default text-neutral-800 dark:text-neutral-200">
               Pay via Wise (Low fees bank transfer)
             </span>
           </div>
         </div>
 
-        <div className="max-w-3xl rounded-2xl border border-neutral-200 bg-neutral-50 px-6 py-4 text-base text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300">
+        <div className="paragraph-default max-w-3xl rounded-2xl border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-800 dark:bg-neutral-900/50">
           <strong className="font-semibold text-neutral-900 dark:text-neutral-100">
             Action Step:
           </strong>{' '}
@@ -96,7 +95,7 @@ export const steps: Step[] = [
           reply to our email thread.
         </div>
 
-        <div className="max-w-3xl space-y-3">
+        <div className="max-w-3xl">
           <FaqItem
             question="Do you offer installment plans?"
             answer="Yes. For most projects, we work on a 50/50 basis (50% upfront deposit, 50% upon project completion before site handover)."
@@ -141,7 +140,7 @@ export const steps: Step[] = [
           </p>
         </div>
 
-        <div className="max-w-3xl space-y-3">
+        <div className="max-w-3xl">
           <FaqItem
             question="Can I request changes while the site is being built?"
             answer="Yes. Daily reporting allows you to give feedback in real-time. Minor adjustments are welcomed, though major structural changes outside the original PDF scope may affect the final delivery date."
@@ -204,7 +203,7 @@ export const steps: Step[] = [
             ].map(({ icon, label }) => (
               <li
                 key={label}
-                className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white p-3 text-base font-medium text-neutral-700 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300"
+                className="paragraph-default flex items-center gap-2 rounded-lg border border-neutral-200 bg-white p-3 text-neutral-700 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300"
               >
                 <svg
                   className="h-5 w-5 shrink-0 text-primary"
@@ -220,7 +219,7 @@ export const steps: Step[] = [
           </ul>
         </div>
 
-        <div className="max-w-3xl space-y-3">
+        <div className="max-w-3xl">
           <FaqItem
             question="Do I actually own the website when you are done?"
             answer="Yes, 100%. Unlike agencies that lock you into proprietary software, we give you full ownership of the source code and domain."
@@ -237,7 +236,7 @@ export const steps: Step[] = [
       'Your safety net. Every project comes with a 30-day free support window to fix any bugs, adjust content, and ensure everything runs flawlessly post-launch.',
     isHighlighted: true,
     content: (
-      <div className="max-w-3xl space-y-3">
+      <div className="max-w-3xl">
         <FaqItem
           question="What happens after the free support window ends?"
           answer="You can choose to manage the site yourself, or subscribe to our monthly retainer care plan where we handle security updates, backups, and small content edits for you."

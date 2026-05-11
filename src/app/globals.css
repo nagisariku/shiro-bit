@@ -177,15 +177,35 @@
   }
 
   .section-wrapper-sm {
-    @apply mx-auto max-w-screen-lg px-2 py-24 text-center sm:px-4;
+    @apply mx-auto max-w-screen-lg px-3 py-24 text-center sm:px-6;
   }
 
   .section-title {
-    @apply mb-4 text-3xl font-semibold md:text-4xl;
+    @apply mb-4 text-3xl font-medium text-neutral-800 dark:text-neutral-200 md:text-4xl;
   }
 
   .section-subtitle {
-    @apply mx-auto mb-8 max-w-2xl text-neutral-500 dark:text-neutral-400 md:mb-12;
+    @apply mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300 md:mb-12;
+  }
+
+  .section-subtitle-portfolio {
+    @apply mb-8 text-lg text-neutral-600 dark:text-neutral-300 md:text-xl;
+  }
+
+  .boxinfo-title {
+    @apply mb-6 text-lg font-bold;
+  }
+
+  .boxinfo-label {
+    @apply text-[11px] font-bold uppercase tracking-[0.1em] text-neutral-400 dark:text-neutral-600;
+  }
+
+  .boxinfo-value {
+    @apply font-semibold text-neutral-800 dark:text-neutral-200;
+  }
+
+  .boxinfo-icon {
+    @apply size-4;
   }
 
   .text-brand {
@@ -193,18 +213,46 @@
   }
 
   .page-title {
-    @apply mb-4 text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl;
+    @apply mb-4 text-4xl font-medium tracking-tight text-neutral-800 dark:text-neutral-200 md:text-5xl;
   }
 
   .page-subtitle {
-    @apply mx-auto max-w-2xl text-base text-neutral-600 dark:text-neutral-400 md:text-lg;
+    @apply mx-auto max-w-2xl text-base text-neutral-600 dark:text-neutral-300 md:text-lg;
   }
 
   .page-badge {
-    @apply mx-auto mb-4 block w-fit rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-wider;
+    @apply mx-auto mb-4 block w-fit rounded-full px-4 py-1 text-xs font-medium uppercase tracking-wider;
   }
 
   .back-link {
-    @apply mb-12 inline-flex items-center gap-2 text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100;
+    @apply mb-12 inline-flex items-center gap-2 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100;
+  }
+
+  .paragraph-default {
+    @apply max-w-none whitespace-pre-wrap text-base leading-relaxed text-neutral-600 dark:text-neutral-300;
+  }
+
+  .paragraph-hero {
+    @apply mb-2 text-xl font-medium leading-relaxed text-neutral-800 dark:text-neutral-200 md:text-2xl;
+  }
+
+  .paragraph-title {
+    @apply mb-2 text-base font-medium leading-relaxed text-neutral-800 dark:text-neutral-200 md:text-xl;
+  }
+
+  .paragraph-small {
+    @apply max-w-none text-sm leading-normal text-neutral-600 dark:text-neutral-300;
+  }
+
+  .icon-style {
+    @apply size-6 text-neutral-600 md:size-7;
+  }
+
+  .icon-style-large {
+    @apply size-8 text-neutral-600 md:size-10;
+  }
+
+  .border-default {
+    @apply rounded-2xl border border-border-subtle p-6 dark:bg-surface-muted;
   }
 }

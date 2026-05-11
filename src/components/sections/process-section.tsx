@@ -4,6 +4,7 @@ import React from 'react'
 import { BlurFade } from '@/components/magicui/blur-fade'
 import Timeline from '@/components/timeline'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function ProcessSection() {
   return (
@@ -18,8 +19,8 @@ export default function ProcessSection() {
           </BlurFade>
           <BlurFade delay={0.25 * 2} inView>
             <p className="section-subtitle">
-              It's just easy steps, and we're here to guide you every step of
-              the way.
+              It's just easy steps and we're here to guide you every step of the
+              way.
               {/* <span>
                 We also provide the dashboard for you to monitor the progress!
               </span> */}
@@ -29,8 +30,11 @@ export default function ProcessSection() {
             <Button
               variant="outline"
               className="mb-12 rounded-xl px-8 py-5 text-sm dark:border-border-subtle dark:bg-surface-muted md:py-6 md:text-lg"
+              asChild
             >
-              Learn More
+              <Link href="/process" aria-label="Learn More about our process">
+                Learn More
+              </Link>
             </Button>
           </BlurFade>
         </div>

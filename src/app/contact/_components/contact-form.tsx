@@ -53,8 +53,9 @@ import { FormSchema, type ContactFormValues } from '../schema'
 import { countryCodes, plans, paymentMethods } from '../constants'
 import { SuccessDialog } from './success-dialog'
 import { SectionTitle } from './section-title'
+import { sendContactEmail } from '../actions'
 
-export function ContactForm() {
+export function ContactForm({ defaultPlan }: { defaultPlan?: string }) {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false)
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(FormSchema),
@@ -63,12 +64,16 @@ export function ContactForm() {
       email: '',
       countryCode: '',
       phone: '',
+      plan: (defaultPlan as any) || undefined,
+      maintenanceType: undefined,
+      paymentMethod: undefined,
+      paymentSchedule: undefined,
       projectName: '',
       websiteType: '',
       businessCategory: '',
       googleDriveLink: '',
       notes: '',
-      estimatedBudget: '',
+      estimatedBudget: '800',
     },
   })
 
@@ -98,14 +103,26 @@ export function ContactForm() {
       ? `$${yearlyMaintenance.toFixed(2)} / year`
       : `$${monthlyMaintenance.toFixed(2)} / month`
 
-  const showSummary = !!currentPlan || !!maintenanceType || !!estimatedBudgetVal
+  const showSummary = !!currentPlan && !!maintenanceType
+
+  const nextYearDate = new Date()
+  nextYearDate.setFullYear(nextYearDate.getFullYear() + 1)
+  const nextYearFormatted = nextYearDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
 
   async function onSubmit(data: ContactFormValues) {
     try {
-      console.log('Form data:', data)
-      // Mocking a successful submission since API key dependencies are removed
-      setShowSuccessDialog(true)
-      form.reset()
+      const result = await sendContactEmail(data)
+
+      if (result.success) {
+        setShowSuccessDialog(true)
+        form.reset()
+      } else {
+        showToast.error(result.error || 'Something went wrong. Please try again.')
+      }
     } catch (error) {
       showToast.error('Something went wrong. Please try again.')
     }
@@ -120,7 +137,7 @@ export function ContactForm() {
         >
           {/* Section: Biodata */}
           <BlurFade delay={0.3}>
-            <section className="rounded-3xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
+            <section className="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
               <SectionTitle
                 title="Personal Details"
                 desc="Tell us who you are and how we can reach you."
@@ -195,7 +212,23 @@ export function ContactForm() {
                                         )
                                         return selected ? (
                                           <span className="flex items-center gap-2">
-                                            <span>{selected.flag}</span>
+                                            <img
+                                              src={`https://flagcdn.com/w40/${selected.iso}.png`}
+                                              width="20"
+                                              height="15"
+                                              alt={selected.country}
+                                              className="rounded-sm object-cover"
+                                              onError={(e) => {
+                                                e.currentTarget.style.display =
+                                                  'none'
+                                                e.currentTarget.nextElementSibling?.classList.remove(
+                                                  'hidden',
+                                                )
+                                              }}
+                                            />
+                                            <span className="hidden">
+                                              {selected.flag}
+                                            </span>
                                             <span>{selected.code}</span>
                                           </span>
                                         ) : (
@@ -224,7 +257,7 @@ export function ContactForm() {
                                         value={
                                           country.country + ' ' + country.code
                                         }
-                                        key={country.code}
+                                        key={country.country}
                                         onSelect={() => {
                                           form.setValue(
                                             'countryCode',
@@ -233,18 +266,34 @@ export function ContactForm() {
                                         }}
                                         className="cursor-pointer"
                                       >
-                                        <Check
+                                        {/* <Check
                                           className={cn(
                                             'mr-2 h-4 w-4',
                                             country.code === field.value
                                               ? 'opacity-100'
                                               : 'opacity-0',
                                           )}
-                                        />
-                                        <span className="mr-2">
-                                          {country.flag}
-                                        </span>
-                                        <span>
+                                        /> */}
+                                        <div className="mr-2 flex h-4 w-6 items-center justify-center overflow-hidden rounded-sm">
+                                          <img
+                                            src={`https://flagcdn.com/w40/${country.iso}.png`}
+                                            width="20"
+                                            height="15"
+                                            alt={country.country}
+                                            className="object-cover"
+                                            onError={(e) => {
+                                              e.currentTarget.style.display =
+                                                'none'
+                                              e.currentTarget.nextElementSibling?.classList.remove(
+                                                'hidden',
+                                              )
+                                            }}
+                                          />
+                                          <span className="hidden text-xs">
+                                            {country.flag}
+                                          </span>
+                                        </div>
+                                        <span className="flex-1 truncate">
                                           {country.country} ({country.code})
                                         </span>
                                       </CommandItem>
@@ -286,7 +335,7 @@ export function ContactForm() {
 
           {/* Section: Plans */}
           <BlurFade delay={0.4}>
-            <section className="rounded-3xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
+            <section className="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
               <SectionTitle
                 title="Select Your Plan"
                 desc="Choose the package that best fits your project scope."
@@ -299,6 +348,7 @@ export function ContactForm() {
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
+                        value={field.value}
                         className="grid gap-4 md:grid-cols-3"
                       >
                         {plans.map((plan) => (
@@ -415,6 +465,7 @@ export function ContactForm() {
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
+                          value={field.value}
                           className="flex gap-4"
                         >
                           <FormItem className="flex items-center space-x-2 space-y-0">
@@ -473,17 +524,20 @@ export function ContactForm() {
                         </div>
                       )}
                     <div className="flex justify-between">
-                      <span>Hosting & Domain (1st Year)</span>
+                      <span>Maintenance, Hosting, & Domain (1st Year)</span>
                       <span className="font-medium">Included</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Maintenance Fee</span>
-                      <span className="font-medium">{maintenanceDisplay}</span>
                     </div>
                     <div className="my-2 border-t border-neutral-200 dark:border-neutral-800" />
                     <div className="flex justify-between text-base font-semibold text-neutral-900 dark:text-neutral-100">
                       <span>Total Upfront Estimate</span>
                       <span>${totalPlanCharge.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400">
+                      <span>
+                        {maintenanceType === 'yearly' ? 'Yearly' : 'Monthly'}{' '}
+                        Charges (Start {nextYearFormatted})
+                      </span>
+                      <span>{maintenanceDisplay}</span>
                     </div>
                   </div>
                 </div>
@@ -493,7 +547,7 @@ export function ContactForm() {
 
           {/* Section: Payment */}
           <BlurFade delay={0.5}>
-            <section className="rounded-3xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
+            <section className="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
               <SectionTitle
                 title="Payment Method"
                 desc="How would you prefer to settle the project fees?"
@@ -506,6 +560,7 @@ export function ContactForm() {
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
+                        value={field.value}
                         className="grid grid-cols-1 gap-4 md:grid-cols-3"
                       >
                         {paymentMethods.map((method) => (
@@ -557,6 +612,7 @@ export function ContactForm() {
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
+                          value={field.value}
                           className="flex gap-4"
                         >
                           <FormItem className="flex items-center space-x-2 space-y-0">
@@ -593,7 +649,7 @@ export function ContactForm() {
 
           {/* Section: Requirements */}
           <BlurFade delay={0.6}>
-            <section className="rounded-3xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
+            <section className="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 md:p-8">
               <SectionTitle
                 title="Project Requirements"
                 desc="Deep dive into the specifics of your request."
@@ -705,6 +761,7 @@ export function ContactForm() {
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
+                          value={field.value}
                           className="flex flex-col gap-2"
                         >
                           <FormItem className="flex items-center space-x-2 space-y-0">
@@ -800,7 +857,7 @@ export function ContactForm() {
               <Button
                 type="submit"
                 size="lg"
-                className="h-14 w-full rounded-xl px-12 text-lg font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] md:w-auto"
+                className="h-14 w-full rounded-xl border border-neutral-200 bg-white px-12 text-lg font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] dark:border-neutral-800 dark:bg-neutral-900 md:w-auto"
                 disabled={form.formState.isSubmitting}
               >
                 {form.formState.isSubmitting
