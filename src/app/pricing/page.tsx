@@ -18,7 +18,10 @@ function PricingCardsSkeleton() {
   return (
     <div className="mx-auto flex max-w-screen-lg flex-wrap justify-center gap-6">
       {[...Array(3)].map((_, i) => (
-        <Skeleton key={i} className="h-[29rem] w-full max-w-[20rem] rounded-2xl sm:max-w-[24rem]" />
+        <Skeleton
+          key={i}
+          className="h-[29rem] w-full max-w-[20rem] rounded-2xl sm:max-w-[24rem]"
+        />
       ))}
     </div>
   )
@@ -28,7 +31,10 @@ function TableSkeleton() {
   return (
     <div className="rounded-xl border border-neutral-100 dark:border-neutral-800">
       {[...Array(6)].map((_, i) => (
-        <div key={i} className="flex border-b border-neutral-50 p-4 last:border-0 dark:border-neutral-900">
+        <div
+          key={i}
+          className="flex border-b border-neutral-50 p-4 last:border-0 dark:border-neutral-900"
+        >
           <Skeleton className="h-4 w-1/4" />
           <Skeleton className="h-4 w-1/4" />
           <Skeleton className="h-4 w-1/4" />
@@ -73,7 +79,10 @@ export default function PricingPage() {
         </section>
 
         {/* Feature Comparison - Parallel Load */}
-        <section id="comparisontable" className="mx-auto mb-24 w-full max-w-screen-lg">
+        <section
+          id="comparisontable"
+          className="mx-auto mb-24 w-full max-w-screen-lg"
+        >
           <BlurFade delay={0.2} inView>
             <div className="mb-10 text-center">
               <h2 className="mb-3 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-3xl">
