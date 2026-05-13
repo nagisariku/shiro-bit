@@ -26,14 +26,14 @@ export default function ProcessSection() {
               </span> */}
             </p>
           </BlurFade>
-          <BlurFade delay={0.25 * 3} inView>
+          <BlurFade delay={0.25 * 3} inView className="hidden md:block">
             <Button
               variant="outline"
-              className="mb-12 rounded-xl px-8 py-5 text-sm dark:border-border-subtle dark:bg-surface-muted md:py-6 md:text-lg"
+              className="rounded-xl px-12 py-6 text-lg dark:border-border-subtle"
               asChild
             >
-              <Link href="/process" aria-label="Learn More about our process">
-                Learn More
+              <Link href="/process" aria-label="Explore our process">
+                Explore Our Process
               </Link>
             </Button>
           </BlurFade>
@@ -41,6 +41,21 @@ export default function ProcessSection() {
 
         <div className="flex-1">
           <Timeline />
+          <BlurFade
+            delay={0.25 * 3}
+            inView
+            className="mt-8 flex justify-center md:hidden"
+          >
+            <Button
+              variant="outline"
+              className="rounded-xl px-12 py-6 text-lg dark:border-border-subtle"
+              asChild
+            >
+              <Link href="/process" aria-label="Explore our process">
+                Explore Our Process
+              </Link>
+            </Button>
+          </BlurFade>
         </div>
       </div>
       <div id="pricing" className=""></div>

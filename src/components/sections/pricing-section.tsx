@@ -28,7 +28,7 @@ export default function PricingSection() {
           href="/pricing#comparisontable"
           className="font-semibold text-neutral-900 underline underline-offset-4 hover:text-neutral-700 dark:text-neutral-100 dark:hover:text-neutral-300"
         >
-          click here
+          view our detailed plan comparison
         </Link>
       </p>
     </div>

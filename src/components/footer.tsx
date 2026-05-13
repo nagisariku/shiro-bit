@@ -15,14 +15,18 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="flex items-center gap-3 transition-opacity hover:opacity-90"
+              className="inline-block transition-opacity hover:opacity-90"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-400 font-bold text-neutral-800 shadow-sm dark:from-neutral-700 dark:to-neutral-900 dark:text-neutral-200">
-                S
-              </div>
-              <span className="font-passion-conflict text-3xl font-medium tracking-tight">
-                ShiroBIT
-              </span>
+              <img
+                src="/assets/logo/logo-tr-light.svg"
+                alt="ShiroBIT Logo"
+                className="h-10 w-auto dark:hidden md:h-12"
+              />
+              <img
+                src="/assets/logo/logo-tr-dark.svg"
+                alt="ShiroBIT Logo"
+                className="hidden h-10 w-auto dark:block md:h-12"
+              />
             </Link>
             <p className="mt-6 max-w-sm text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
               Custom High-Quality Website Development for your business needs.
@@ -33,9 +37,9 @@ export function Footer() {
 
           {/* Contact Info Section */}
           <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
+            <p className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
               Contact
-            </h4>
+            </p>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800/50">
@@ -59,9 +63,9 @@ export function Footer() {
 
           {/* Socials Section */}
           <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
+            <p className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
               Follow Us
-            </h4>
+            </p>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <a
