@@ -19,7 +19,7 @@ export default async function ContactPage({
   const { plan } = await searchParams
   return (
     <div className="container mx-auto flex max-w-screen-xl flex-col items-start justify-start px-6 py-0 lg:p-12">
-      <Link href="/" className="group back-link">
+      <Link href="/" className="back-link group">
         <FaArrowLeft className="transition-transform group-hover:-translate-x-1" />
         <span className="font-medium">Back to Home</span>
       </Link>

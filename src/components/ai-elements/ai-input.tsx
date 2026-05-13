@@ -21,7 +21,7 @@ import {
   IconSparkles,
   IconWaveSine,
 } from '@tabler/icons-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface AiInputProps {
   onSubmit?: (message: string) => void
@@ -31,11 +31,89 @@ interface AiInputProps {
 export default function AiInput({ onSubmit, hideTitle }: AiInputProps) {
   const [message, setMessage] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isRecording, setIsRecording] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const recognitionRef = useRef<any>(null)
+
+  // Clean up recognition on unmount
+  useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop()
+      }
+    }
+  }, [])
+
+  const toggleRecording = () => {
+    if (isRecording) {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop()
+      }
+      setIsRecording(false)
+    } else {
+      const SpeechRecognitionAPI =
+        (window as any).SpeechRecognition ||
+        (window as any).webkitSpeechRecognition
+      if (!SpeechRecognitionAPI) {
+        alert(
+          'Speech recognition is not supported in your browser. Please try using Chrome, Edge, or Safari.',
+        )
+        return
+      }
+
+      try {
+        const recognition = new SpeechRecognitionAPI()
+        recognition.continuous = true
+        recognition.interimResults = true
+
+        const startMessage = message
+
+        recognition.onresult = (event: any) => {
+          let sessionTranscript = ''
+          for (let i = 0; i < event.results.length; ++i) {
+            sessionTranscript += event.results[i][0].transcript
+          }
+          const fullText = startMessage
+            ? `${startMessage} ${sessionTranscript}`
+            : sessionTranscript
+          setMessage(fullText)
+
+          if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto'
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+          }
+          setIsExpanded(fullText.length > 100 || fullText.includes('\n'))
+        }
+
+        recognition.onerror = (event: any) => {
+          console.error('Speech recognition error', event.error)
+          setIsRecording(false)
+        }
+
+        recognition.onend = () => {
+          setIsRecording(false)
+        }
+
+        recognition.start()
+        recognitionRef.current = recognition
+        setIsRecording(true)
+      } catch (err) {
+        console.error('Failed to start speech recognition:', err)
+        setIsRecording(false)
+      }
+    }
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isRecording) {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop()
+      }
+      setIsRecording(false)
+    }
 
     if (message.trim()) {
       if (onSubmit) {
@@ -109,81 +187,47 @@ export default function AiInput({ onSubmit, hideTitle }: AiInputProps) {
                 value={message}
                 onChange={handleTextareaChange}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask anything"
+                placeholder={isRecording ? 'Listening...' : 'Ask anything'}
                 className="placeholder:text-muted-foreground scrollbar-thin min-h-0 resize-none rounded-none border-0 p-0 ps-2 text-base focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-transparent md:text-lg"
                 rows={1}
               />
             </div>
           </div>
 
-          {/* <div
-            className={cn('flex', { hidden: isExpanded })}
-            style={{ gridArea: 'leading' }}
-          >
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-full outline-none ring-0 hover:bg-accent"
-                  aria-label="Add attachments"
-                >
-                  <IconPlus className="text-muted-foreground size-6" />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent
-                align="start"
-                className="max-w-xs rounded-2xl p-1.5"
-              >
-                <DropdownMenuGroup className="space-y-1">
-                  <DropdownMenuItem
-                    className="rounded-md"
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    <IconPaperclip size={20} className="opacity-60" />
-                    Add photos & files
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-md" onClick={() => {}}>
-                    <div className="flex items-center gap-2">
-                      <IconSparkles size={20} className="opacity-60" />
-                      Agent mode
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-md" onClick={() => {}}>
-                    <IconSearch size={20} className="opacity-60" />
-                    Deep Research
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div> */}
-
           <div
             className="flex items-center gap-2"
             style={{ gridArea: isExpanded ? 'footer' : 'trailing' }}
           >
             <div className="ms-auto flex items-center gap-1.5">
+              {isRecording && (
+                <span className="flex items-center gap-1 text-xs font-medium text-red-500 animate-pulse px-2">
+                  <span className="h-2 w-2 rounded-full bg-red-500" />
+                  Recording
+                </span>
+              )}
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="rounded-full hover:bg-accent"
-                aria-label="Record audio message"
+                onClick={toggleRecording}
+                className={cn(
+                  'rounded-full hover:bg-accent transition-all duration-200',
+                  isRecording && 'bg-red-500/10 hover:bg-red-500/20',
+                )}
+                aria-label={
+                  isRecording ? 'Stop recording' : 'Record audio message'
+                }
+                title={isRecording ? 'Stop recording' : 'Record audio message'}
               >
-                <IconMicrophone className="text-muted-foreground size-5" />
+                <IconMicrophone
+                  className={cn(
+                    'size-5',
+                    isRecording
+                      ? 'text-red-500 animate-pulse'
+                      : 'text-muted-foreground',
+                  )}
+                />
               </Button>
-
-              {/* <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="relative h-9 w-9 rounded-full hover:bg-accent"
-                aria-label="Audio visualization"
-              >
-                <IconWaveSine className="text-muted-foreground size-5" />
-              </Button> */}
 
               {message.trim() && (
                 <Button

@@ -12,29 +12,15 @@ export const metadata = {
 function ChatbotSkeleton() {
   return (
     <div className="flex w-full flex-1 flex-col items-center">
-      {/* Hero Section Skeleton */}
-      <section className="mx-auto mb-16 w-full max-w-screen-lg text-center">
-        <Skeleton className="mx-auto mb-4 h-12 w-48 rounded-lg" />
-        <Skeleton className="mx-auto mb-2 h-4 w-[300px] rounded md:w-[500px]" />
-        <Skeleton className="mx-auto h-4 w-[250px] rounded md:w-[400px]" />
-      </section>
+      <div className="my-auto flex min-h-[calc(100vh-280px)] w-full flex-col items-center justify-center">
+        <section className="mx-auto mb-8 w-full max-w-screen-lg text-center">
+          <Skeleton className="mx-auto mb-4 h-12 w-48 rounded-lg" />
+          <Skeleton className="mx-auto mb-2 h-4 w-[300px] rounded md:w-[500px]" />
+          <Skeleton className="mx-auto h-4 w-[250px] rounded md:w-[400px]" />
+        </section>
 
-      {/* Chat Container Skeleton */}
-      <div className="mx-auto flex h-[50vh] min-h-[400px] w-full max-w-screen-lg flex-col justify-between">
-        {/* Conversation Empty State Skeleton */}
-        <div className="flex size-full flex-col items-center justify-center gap-3 p-8 text-center">
-          <div className="space-y-2">
-            <Skeleton className="mx-auto h-5 w-32 rounded" />
-            <Skeleton className="mx-auto h-4 w-64 rounded" />
-          </div>
-        </div>
-
-        {/* Input Area Skeleton */}
-        <div className="mt-auto pb-8 pt-4 w-full">
-          {/* Paragraph Hero Skeleton inside AiInput */}
+        <div className="w-full max-w-screen-lg px-2">
           <Skeleton className="mx-auto mb-8 h-8 w-64 rounded-lg" />
-
-          {/* Composer Box Skeleton */}
           <Skeleton className="mx-auto h-14 w-full max-w-screen-lg rounded-3xl" />
         </div>
       </div>
