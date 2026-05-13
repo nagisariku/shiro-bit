@@ -36,7 +36,7 @@ export default function DescriptionSection() {
           </div>
 
           {/* Right column: Quality Development */}
-          <div className="row-span-2 flex flex-col justify-center bg-surface-base p-4 dark:bg-surface-elevated md:bg-surface-base md:p-6 md:dark:bg-surface-muted">
+          <div className="row-span-2 my-32 flex flex-col justify-center bg-surface-base p-4 dark:bg-surface-elevated md:my-0 md:bg-surface-base md:p-6 md:dark:bg-surface-muted">
             <div className="mb-4">
               <Code2 className="icon-style-large" />
             </div>
@@ -51,14 +51,11 @@ export default function DescriptionSection() {
           <div className="col-span-2 mt-0 flex justify-center">
             <Button
               variant="outline"
-              className="w-full max-w-xs rounded-xl py-6 text-lg dark:border-border-subtle sm:w-auto sm:px-12"
+              className="rounded-xl px-12 py-6 text-lg dark:border-border-subtle"
               asChild
             >
-              <Link
-                href="/home#our-services"
-                aria-label="Learn More about our services"
-              >
-                Learn More
+              <Link href="/home#our-services" aria-label="Explore our services">
+                Explore Our Services
               </Link>
             </Button>
           </div>

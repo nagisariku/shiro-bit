@@ -6,6 +6,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { FloatingCsButton } from '@/components/floating-cs-button'
 import { ToastProvider } from '@/components/ui/toast'
 // Libraries
 import NextTopLoader from 'nextjs-toploader'
@@ -52,10 +53,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'ShiroBIT - Premium Website Development',
+        url: '/assets/logo/logo.svg',
+        width: 300,
+        height: 300,
+        alt: 'ShiroBIT Logo',
       },
     ],
   },
@@ -99,6 +100,7 @@ export default function RootLayout({
           <Navigation />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FloatingCsButton />
         </ThemeProvider>
       </body>
     </html>

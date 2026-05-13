@@ -42,19 +42,19 @@ export function Navigation() {
         </div>
       </div>
       <div className="sticky top-0 z-50 w-full border-b border-neutral-100/30 bg-background/60 backdrop-blur-md dark:border-none">
-        <div className="container mx-auto flex max-w-screen-xl items-center justify-between px-2 py-4 md:px-4">
+        <div className="container mx-auto flex max-w-screen-xl items-center justify-between p-4">
           <Link href="/">
             <div className="flex items-center gap-4">
-              {/* <Image
-                src="/logo.svg"
-                alt="Logo"
-                width={34}
-                height={34}
-                className="h-[36px] w-[36px] rounded-full border"
-              /> */}
-              <span className="ps-2 font-passion-conflict text-lg font-medium md:text-xl">
-                ShiroBIT
-              </span>
+              <img
+                src="/assets/logo/logo-tr-light.svg"
+                alt="ShiroBIT Logo"
+                className="h-10 w-auto dark:hidden md:h-11"
+              />
+              <img
+                src="/assets/logo/logo-tr-dark.svg"
+                alt="ShiroBIT Logo"
+                className="hidden h-10 w-auto dark:block md:h-11"
+              />
             </div>
           </Link>
 
@@ -73,7 +73,7 @@ export function Navigation() {
                     <NavigationMenuLink
                       className={`${navigationMenuTriggerStyle()} transition-all duration-300 ${
                         isActive(item.href)
-                          ? 'scale-110 text-[var(--color-brand-primary)] font-bold'
+                          ? 'scale-110 font-bold text-[var(--color-brand-primary)]'
                           : ''
                       }`}
                     >
@@ -120,7 +120,7 @@ export function Navigation() {
                       onClick={() => setIsOpen(false)}
                       className={`paragraph-hero block w-fit origin-left transition-all duration-300 ${
                         isActive(item.href)
-                          ? 'scale-110 text-[var(--color-brand-primary)] font-bold'
+                          ? 'scale-110 font-bold text-[var(--color-brand-primary)]'
                           : 'opacity-70 hover:opacity-100'
                       }`}
                     >
@@ -132,10 +132,16 @@ export function Navigation() {
                 <div className="mt-auto space-y-6 pb-4">
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-full bg-neutral-300 dark:bg-neutral-800" />
-                      <span className="font-passion-conflict text-xl">
-                        ShiroBIT
-                      </span>
+                      <img
+                        src="/assets/logo/logo-tr-light.svg"
+                        alt="ShiroBIT Logo"
+                        className="h-8 w-auto dark:hidden"
+                      />
+                      <img
+                        src="/assets/logo/logo-tr-dark.svg"
+                        alt="ShiroBIT Logo"
+                        className="hidden h-8 w-auto dark:block"
+                      />
                     </div>
                     <p className="text-muted-foreground text-sm">
                       Custom High-Quality Website Development for your business
