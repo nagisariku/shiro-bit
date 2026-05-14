@@ -165,7 +165,7 @@ export default function AiInput({ onSubmit, hideTitle }: AiInputProps) {
 
         <div
           className={cn(
-            'dark:bg-muted/50 mx-auto w-full max-w-screen-lg cursor-text overflow-clip border border-border-subtle bg-transparent bg-clip-padding p-2.5 transition-[border-radius] duration-200 ease-out',
+            'dark:bg-muted/50 mx-auto w-full max-w-screen-lg cursor-text overflow-clip border border-border-subtle border-neutral-200 bg-white bg-clip-padding p-2.5 transition-[border-radius] duration-200 ease-out dark:border-neutral-800 dark:bg-neutral-900',
             isExpanded
               ? "grid rounded-3xl [grid-template-areas:'header'_'primary'_'footer'] [grid-template-columns:1fr] [grid-template-rows:auto_1fr_auto]"
               : "grid rounded-3xl [grid-template-areas:'header_header_header'_'leading_primary_trailing'_'._footer_.'] [grid-template-columns:auto_1fr_auto] [grid-template-rows:auto_1fr_auto]",
@@ -200,7 +200,7 @@ export default function AiInput({ onSubmit, hideTitle }: AiInputProps) {
           >
             <div className="ms-auto flex items-center gap-1.5">
               {isRecording && (
-                <span className="flex items-center gap-1 text-xs font-medium text-red-500 animate-pulse px-2">
+                <span className="flex animate-pulse items-center gap-1 px-2 text-xs font-medium text-red-500">
                   <span className="h-2 w-2 rounded-full bg-red-500" />
                   Recording
                 </span>
@@ -211,7 +211,7 @@ export default function AiInput({ onSubmit, hideTitle }: AiInputProps) {
                 size="icon"
                 onClick={toggleRecording}
                 className={cn(
-                  'rounded-full hover:bg-accent transition-all duration-200',
+                  'rounded-full transition-all duration-200 hover:bg-accent',
                   isRecording && 'bg-red-500/10 hover:bg-red-500/20',
                 )}
                 aria-label={
@@ -223,7 +223,7 @@ export default function AiInput({ onSubmit, hideTitle }: AiInputProps) {
                   className={cn(
                     'size-5',
                     isRecording
-                      ? 'text-red-500 animate-pulse'
+                      ? 'animate-pulse text-red-500'
                       : 'text-muted-foreground',
                   )}
                 />

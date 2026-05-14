@@ -92,7 +92,7 @@ export function ChatInterface() {
         /* Active State: Conversation Container & Fixed Bottom Input */
         <div className="mx-auto flex h-[75vh] w-full max-w-screen-lg flex-col transition-all duration-300">
           <Conversation>
-            <ConversationContent className="pb-4 pt-4">
+            <ConversationContent>
               {messages.map((msg) => {
                 const textContent = msg.parts
                   ? msg.parts
@@ -141,10 +141,10 @@ export function ChatInterface() {
                     {textContent && (
                       <div
                         className={cn(
-                          'max-w-[80%] break-words rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm transition-all md:text-base',
+                          'break-words text-sm leading-relaxed transition-all md:text-base',
                           msg.role === 'user'
-                            ? 'border border-zinc-800 bg-zinc-900 text-zinc-100 shadow-md dark:border-zinc-200 dark:bg-zinc-100 dark:text-zinc-900'
-                            : 'bg-muted prose prose-sm max-w-none text-foreground dark:prose-invert',
+                            ? 'max-w-[80%] rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3 text-zinc-100 shadow-md dark:border-zinc-200 dark:bg-zinc-100 dark:text-zinc-900'
+                            : 'prose prose-sm w-full max-w-none text-foreground dark:prose-invert',
                         )}
                       >
                         {msg.role === 'user' ? (
@@ -237,8 +237,8 @@ export function ChatInterface() {
           </Conversation>
 
           {/* Sticky Bottom Input Area */}
-          <div className="sticky bottom-0 left-0 right-0 z-40 bg-background/80 p-4 shadow-lg backdrop-blur-md transition-all duration-300">
-            <div className="mx-auto w-full max-w-screen-lg px-4">
+          <div className="sticky bottom-0 left-0 right-0 z-40 bg-background/80 pb-6 transition-all duration-300">
+            <div className="mx-auto w-full max-w-screen-lg">
               <AiInput onSubmit={handleSubmit} hideTitle={true} />
             </div>
           </div>
