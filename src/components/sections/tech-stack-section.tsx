@@ -24,7 +24,7 @@ const techstacks = [
 export default function TechStackSection() {
   return (
     <BlurFade delay={0.25} inView>
-      <div className="section-wrapper text-center">
+      <div className="section-wrapper px-0 text-center">
         <h2 className="section-title">Bring The Latest Technology</h2>
         <p className="section-subtitle">
           We use industry-leading frameworks like Next.js, Tailwind, Shadcn,
@@ -38,7 +38,7 @@ export default function TechStackSection() {
               className="relative flex h-16 w-24 items-center justify-center md:h-24 md:w-48"
             >
               <Image
-                className={`object-contain select-none pointer-events-none ${tech.class || ''}`}
+                className={`pointer-events-none select-none object-contain ${tech.class || ''}`}
                 src={tech.img}
                 alt={tech.alt}
                 fill

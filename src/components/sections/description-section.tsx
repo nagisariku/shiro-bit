@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function DescriptionSection() {
   return (
-    <div className="section-wrapper mx-auto">
+    <div className="section-wrapper px-0">
       <div className="flex flex-col gap-8 rounded-2xl p-0 dark:border-border-subtle md:border md:p-8 md:dark:bg-surface-muted lg:flex-row">
         <div className="order-2 grid w-full grid-cols-2 md:aspect-[4/3] lg:order-2">
           {/* Left column: Align Your Business Needs + Full Support */}
